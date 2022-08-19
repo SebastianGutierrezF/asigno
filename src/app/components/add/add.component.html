@@ -1,0 +1,24 @@
+<form [formGroup]="addForm">
+  <div class="form-floating mb-3">
+      <input type="text" class="form-control" id="titulo" placeholder="" formControlName="title">
+      <label for="titulo">Título</label>
+    </div>
+    <div class="form-floating mb-3">
+      <select class="form-select" id="responsable" aria-label="Responsable de la actividad" formControlName="asignment">
+        <option *ngFor="let user of users" selected>{{user.name}}</option>
+      </select>
+      <label for="responsable">Responsable</label>
+    </div>
+  <div class="form-floating mb-3">
+      <textarea type="text" id="notas" class="form-control" style="height: 200px;" formControlName="notes"></textarea>
+      <label for="notas">Notas</label>
+  </div>
+  <div class="row mb-2">
+    <div class="col-6">
+      <label for="dates"><small>Fecha de inicio y fin de la actividad</small></label>
+    </div>
+  </div>
+  <app-datepicker id="dates" (from)="setFrom($event)" (to)="setTo($event)"></app-datepicker>
+  <button class="btn btn-success mt-3" (click)="add()" (keyup.enter)="add()" [disabled]="!addForm.valid">Agregar actividad</button>
+</form>
+

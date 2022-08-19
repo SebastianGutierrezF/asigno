@@ -1,0 +1,26 @@
+<nav class="navbar navbar-lg navbar-dark bg-dark sideNav">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="list">ASIGNO</a>
+      <p *ngIf="isAdmin()" class="navbar-brand danger" routerLink="list"><small>Administrador</small></p>
+      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button> -->
+      <div class="navbar-collapse" id="navbarNav">
+        <ul *ngIf="isLogged()" class="navbar-nav">
+          <p class="navbar-brand danger" routerLink="list"><small>Hola, {{getName()}}</small></p>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="list">Pendientes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="calendar">Calendario</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="">Completados</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="logout()" routerLink="">Cerrar sesión</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

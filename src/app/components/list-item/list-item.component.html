@@ -1,0 +1,15 @@
+<li class="list-group-item item" [ngClass]="checkActive()">
+  <div class="row nowrap col-12">
+    <strong class="col">{{ item.title }}</strong>
+    <div class="col">{{ item.start | date }}</div>
+    <div class="col">{{ item.end | date }}</div>
+    <div class="col">{{ item.status }}</div>
+    <div class="col">{{ item.name }}</div>
+    <div class="col">
+      <button class="btn" data-bs-toggle="modal" data-bs-target="#edit">
+        <i class="fa-solid fa-pen-to-square"></i>
+      </button>
+      <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+    </div>
+  </div>
+</li>

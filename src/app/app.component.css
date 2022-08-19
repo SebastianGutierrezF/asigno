@@ -1,0 +1,7 @@
+.main {
+    display: flex;
+    flex-flow: row nowrap;
+    overflow: hidden;
+    max-height: 100vh;
+}
+

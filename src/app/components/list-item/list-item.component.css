@@ -1,0 +1,21 @@
+.item {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: 250ms linear; 
+    width: 90%;
+    margin: 10px auto;
+    height: 50px;
+}
+
+.itemInactive {
+    filter: blur(0.7px);
+    color: gray;
+
+}
+
+.item:hover {
+    transform: scale(1.01);
+    box-shadow: 1px 1px 5px gray;
+}

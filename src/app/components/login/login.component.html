@@ -1,0 +1,9 @@
+<form class="form-group row w-50 mx-auto p-3" [formGroup]="formulario">
+    <label for="user" class="form-label">Usuario</label>
+    <input class="form-control mb-2" name="email" type="text" formControlName="email">
+    <div *ngIf="notValid('email')"><small>Ingresa tu usuario</small></div>
+    <label for="pass" class="form-label">Contraseña</label>
+    <input class="form-control mb-2" name="pass" type="password" formControlName="pass">
+    <div *ngIf="notValid('pass')"><small>Ingresa tu contraseña</small></div>
+    <button [disabled]="!formulario.valid" class="btn btn-primary" (click)="login()">Login</button>
+</form>

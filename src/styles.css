@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+.sideNav {
+    height: 100vh;
+    width: 150px;
+}
+
+.sideNav .container-fluid {
+    align-content: flex-start;
+    height: 100%;
+}
+
+.list {
+    padding: 5px;
+    width: calc(100vw - 150px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 100%;
+}
+
+.topNav {
+    width: calc(100vw - 150px);
+}
+
+.cal {
+    width: calc(100vw - 150px);
+    overflow-y: scroll;
+}
+
+.modal {
+    transition: 150ms linear;
+}
