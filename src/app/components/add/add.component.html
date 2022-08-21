@@ -5,7 +5,7 @@
     </div>
     <div class="form-floating mb-3">
       <select class="form-select" id="responsable" aria-label="Responsable de la actividad" formControlName="asignment">
-        <option *ngFor="let user of users" selected>{{user.name}}</option>
+        <option *ngFor="let user of users" [value]="user.id" selected>{{user.name}}</option>
       </select>
       <label for="responsable">Responsable</label>
     </div>

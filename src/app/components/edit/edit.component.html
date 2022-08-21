@@ -5,7 +5,7 @@
   </div>
   <div class="form-floating mb-3">
     <select class="form-select" id="responsable" aria-label="Responsable de la actividad" formControlName="asignment">
-      <option *ngFor="let user of users" selected>{{user.name}}</option>
+      <option *ngFor="let user of users" [value]="user.id" selected>{{user.name}}</option>
     </select>
     <label for="responsable">Responsable</label>
   </div>
@@ -13,19 +13,19 @@
     <textarea type="text" id="notas" class="form-control" style="height: 200px;" formControlName="notes"></textarea>
     <label for="notas">Notas</label>
   </div>
-  <label for="from"><small>Fecha de inicio y fin de la actividad</small></label>
-  <app-datepicker></app-datepicker>
+  <label><small>Fecha de inicio y fin de la actividad</small></label>
+  <app-datepicker (from)="setFrom($event)" (to)="setTo($event)"></app-datepicker>
   <hr>
   <div class="row mt-3 justify-content-center">
     <div class="form-floating col-5">
       <select class="form-select" id="statusSelect" aria-label="Task status selector" formControlName="status">
-        <option selected>Asignada</option>
-        <option value="1">En proceso</option>
-        <option value="2">Completada</option>
+        <option>Asignada</option>
+        <option>En proceso</option>
+        <option>Completada</option>
       </select>
       <label for="statusSelect" class="mx-2">Estatus</label>
     </div>
-    <button class="btn btn-success col-2 m-3" (click)="update()"><i class="fas fa-check"></i></button>
+    <button [disabled]="!editForm.valid" class="btn btn-success col-2 m-3" (keyup.enter)="update()" (click)="update()"><i class="fas fa-check"></i></button>
     <button *ngIf="isAdmin()" class="btn btn-danger col-1 m-3" (click)="delete()"><i class="fa-solid fa-trash"></i></button>
   </div>
 </form>

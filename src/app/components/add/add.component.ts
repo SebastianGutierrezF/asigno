@@ -14,7 +14,6 @@ export class AddComponent implements OnInit {
   addForm: FormGroup = this.fb.group({
     title: [, [Validators.required, Validators.maxLength(50)]],
     asignment: [, Validators.required],
-    id: [],
     notes: [, Validators.required],
     start: [, Validators.required],
     end: [, Validators.required]
@@ -22,16 +21,18 @@ export class AddComponent implements OnInit {
 
   users: User[] = [];
 
-  constructor(private fb: FormBuilder, private ds: DataService, private router: Router, private us: UsersService) {
-    this.users = this.us.getUsers();
+  constructor(private fb: FormBuilder, private ds: DataService, private us: UsersService) {
+    this.users = this.us.getUsers();    
   }
 
   ngOnInit(): void {
   }
 
-  add() {
+  add() {    
     this.ds.post('task', 'insert', this.addForm.value).subscribe((dato: any) => {
-        this.router.navigateByUrl("/list");      
+      if (dato['status']) {
+        location.reload();
+      }   
     })
   }
 

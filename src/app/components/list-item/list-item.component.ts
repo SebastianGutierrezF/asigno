@@ -43,6 +43,9 @@ export class ListItemComponent implements OnInit {
 
   delete() {
     this.ds.post('task', 'delete', {id: this.item.id}).subscribe((dato: any) => {
+      if (dato['status']) {
+        location.reload();
+      }
     })
   }
 
