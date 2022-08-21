@@ -1,15 +1,23 @@
+<!-- Top navbar with search and other filters -->
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
         <ul class="navbar-nav">
+          <!-- Filter by asignment -->
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Filtrar
+              Responsable
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <!-- Filter by status -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Estatus
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
             </ul>
           </li>
         </ul>
@@ -22,13 +30,25 @@
       </div>
 </nav>
 
-<div class="container-fluid list">
-    <ul class="list-group">
-        <app-list-item *ngFor="let item of items" [item]="item"></app-list-item>
-      </ul>
+<!-- List headers -->
+<div class="row nowrap listHeader">
+  <strong class="col-2">Título</strong>
+  <div class="col">Fecha de inicio</div>
+  <div class="col">Fecha de entrega</div>
+  <div class="col">Estatus</div>
+  <div class="col">Responsable</div>
+  <div class="col">
+  </div>
 </div>
 
-<!-- Modal para agregar o editar actividad -->
+<!-- Task list -->
+<div class="container-fluid list">
+  <ul class="list-group">
+      <app-list-item *ngFor="let item of items" [item]="item" (outItem)="setCurrentItem($event)"></app-list-item>
+  </ul>
+</div>
+
+<!-- Modals to edit/add task -->
 
 <div class="modal fade" id="add" tabindex="-1" aria-labelledby="addModal" aria-hidden="true">
   <div class="modal-dialog">
@@ -49,10 +69,10 @@
     <div class="modal-content" style="width: 700px;">
       <div class="modal-header">
         <h5 class="modal-title" id="editModalLabel">Actividad</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeEdit()"></button>
       </div>
       <div class="modal-body">
-        <app-edit></app-edit>
+        <app-edit *ngIf="currentItem"></app-edit>
       </div>
     </div>
   </div>

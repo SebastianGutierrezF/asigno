@@ -12,7 +12,6 @@
 .itemInactive {
     filter: blur(0.7px);
     color: gray;
-
 }
 
 .item:hover {

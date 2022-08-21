@@ -6,10 +6,10 @@
     <div class="col">{{ item.status }}</div>
     <div class="col">{{ item.name }}</div>
     <div class="col">
-      <button class="btn" data-bs-toggle="modal" data-bs-target="#edit">
+      <button class="btn" data-bs-toggle="modal" data-bs-target="#edit" (click)="sendCurrentItem()">
         <i class="fa-solid fa-pen-to-square"></i>
       </button>
-      <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+      <button class="btn btn-danger" (click)="delete()"><i class="fa-solid fa-trash"></i></button>
     </div>
   </div>
 </li>

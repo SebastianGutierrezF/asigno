@@ -1,0 +1,9 @@
+.sideNav {
+    height: 100vh;
+    width: 150px;
+}
+
+.sideNav .container-fluid {
+    align-content: flex-start;
+    height: 100%;
+}

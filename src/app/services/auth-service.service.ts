@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserLogin } from '../interfaces/user-login';
 import { DataService } from './data-service.service';
 
@@ -7,7 +8,7 @@ import { DataService } from './data-service.service';
 })
 export class AuthService {
 
-  constructor(private ds: DataService) { }
+  constructor(private ds: DataService, private router: Router) { }
 
   login(data: UserLogin) {
     this.ds.post('task', 'login', data).subscribe((dato: any) => {
@@ -20,5 +21,6 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

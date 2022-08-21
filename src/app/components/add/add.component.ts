@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/interfaces/user';
 import { DataService } from 'src/app/services/data-service.service';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-add',
@@ -18,18 +20,10 @@ export class AddComponent implements OnInit {
     end: [, Validators.required]
   })
 
-  users = [{'id': '', 'name': ''}];
+  users: User[] = [];
 
-  constructor(private fb: FormBuilder, private ds: DataService, private router: Router) {
-    if (localStorage.getItem('admin') == '1') {
-      this.ds.get('task', 'getAllUsers').subscribe((dato: any) => {
-        this.users = dato;
-      })
-    } else {
-      this.ds.post('task', 'getUsers', {id: localStorage.getItem('id')}).subscribe((dato: any) => {
-        this.users = dato;
-      })
-    }    
+  constructor(private fb: FormBuilder, private ds: DataService, private router: Router, private us: UsersService) {
+    this.users = this.us.getUsers();
   }
 
   ngOnInit(): void {
