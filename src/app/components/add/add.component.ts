@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { DataService } from 'src/app/services/data-service.service';
-import { UsersService } from 'src/app/services/users.service';
+import { TaskService } from 'src/app/services/task.service';
+import { ListComponent } from '../list/list.component';
 
 @Component({
   selector: 'app-add',
@@ -19,10 +20,9 @@ export class AddComponent implements OnInit {
     end: [, Validators.required]
   })
 
-  users: User[] = [];
+  @Input() users: User[] = [];
 
-  constructor(private fb: FormBuilder, private ds: DataService, private us: UsersService) {
-    this.users = this.us.getUsers();    
+  constructor(private fb: FormBuilder, private ds: DataService, private ts: TaskService) {
   }
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class AddComponent implements OnInit {
   add() {    
     this.ds.post('task', 'insert', this.addForm.value).subscribe((dato: any) => {
       if (dato['status']) {
-        location.reload();
+        // Aquí va el swal
       }   
     })
   }

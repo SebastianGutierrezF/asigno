@@ -6,7 +6,6 @@ import { DataService } from './data-service.service';
   providedIn: 'root'
 })
 export class UsersService {
-
   users: User[] = [];
 
   constructor(private ds: DataService) { }
@@ -20,9 +19,6 @@ export class UsersService {
       this.ds.post('task', 'getUsers', { id: localStorage.getItem('id') }).subscribe((dato: any) => {
         this.users = dato as User[];
       })
-    }
-    console.log(this.users);
-    
-    return this.users;
+    }   
   }
 }

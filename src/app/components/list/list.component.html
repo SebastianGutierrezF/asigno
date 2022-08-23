@@ -22,11 +22,12 @@
           </li>
         </ul>
         <app-datepicker></app-datepicker>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+        <form class="d-flex" [formGroup]="filterForm">
+          <input class="form-control me-2" type="search" aria-label="Search" formControlName="search">
+          <button type="button" class="btn btn-outline-success" (click)="search()">Buscar</button>
+          <button type="button" class="btn btn-outline-warning" (click)="reset()" style="margin-left: 5px;"><i class="fas fa-redo"></i></button>
         </form>
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add" (click)="addItem = true;">Agregar</button>
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add">Agregar</button>
       </div>
 </nav>
 
@@ -44,35 +45,35 @@
 <!-- Task list -->
 <div class="container-fluid list">
   <ul class="list-group">
-      <app-list-item *ngFor="let item of items" [item]="item" (outItem)="setCurrentItem($event)"></app-list-item>
+      <app-list-item *ngFor="let task of tasks" [task]="task" (outTask)="setCurrentTask($event)"></app-list-item>
   </ul>
 </div>
 
 <!-- Modals to edit/add task -->
 
-<div class="modal fade" id="add" tabindex="-1" aria-labelledby="addModal" aria-hidden="true">
+<div class="modal fade" id="add" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" style="width: 700px;">
       <div class="modal-header">
         <h5 class="modal-title" id="addModalLabel">Actividad</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
       </div>
       <div class="modal-body">
-        <app-add *ngIf="addItem"></app-add>
+        <app-add [users]="users"></app-add>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="edit" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
+<div class="modal fade" id="edit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editModal" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" style="width: 700px;">
       <div class="modal-header">
         <h5 class="modal-title" id="editModalLabel">Actividad</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
       </div>
       <div class="modal-body">
-        <app-edit *ngIf="currentItem"></app-edit>
+        <app-edit [currentTask]="currentTask" [users]="users"></app-edit>
       </div>
     </div>
   </div>

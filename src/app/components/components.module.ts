@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { TeamComponent } from './team/team.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     EditComponent,
     ListItemComponent,
     DatePickerComponent,
-    LoginComponent
+    LoginComponent,
+    TeamComponent
   ],
   imports: [
     CommonModule,

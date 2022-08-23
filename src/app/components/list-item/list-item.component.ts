@@ -12,17 +12,8 @@ import { ListComponent } from '../list/list.component';
   styleUrls: ['./list-item.component.css']
 })
 export class ListItemComponent implements OnInit {
-  @Input() item: TaskItem = {
-    id: "",
-    title: "",
-    start: "",
-    end: "",
-    status: "",
-    name: "",
-    notes: ""
-  }
-
-  @Output() outItem = new EventEmitter<TaskItem>;
+  @Input() task!: TaskItem;
+  @Output() outTask = new EventEmitter<TaskItem>;
   
   constructor(private ds: DataService) {
   }
@@ -32,21 +23,28 @@ export class ListItemComponent implements OnInit {
 
   // Cambia el estilo si la actividad aún no empieza
   checkActive() {
-    const start: Date = new Date(this.item.start);
+    const start: Date = new Date(this.task.start);
     const now: Date = new Date(Date.now());
     return (start > now) ? 'itemInactive' : '';
   }
 
-  sendCurrentItem() {  
-    this.outItem.emit(this.item);
+  checkDone() {    
+    return this.task.status == "Completada";
+  }
+
+  sendCurrentItem() {
+    this.outTask.emit(this.task);
   }
 
   delete() {
-    this.ds.post('task', 'delete', {id: this.item.id}).subscribe((dato: any) => {
+    this.ds.post('task', 'delete', {id: this.task.id}).subscribe((dato: any) => {
       if (dato['status']) {
-        location.reload();
       }
     })
+  }
+
+  isAdmin() {
+    return localStorage['admin'] == 1 ? true : false;
   }
 
 }

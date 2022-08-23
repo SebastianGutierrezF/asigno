@@ -1,0 +1,28 @@
+<form [formGroup]="teamForm">
+    <input type="text" formControlName="name">
+    <input type="email" formControlName="email">
+    <input type="password" formControlName="pass">
+    <select formControlName="admin">
+        <option value="0">No</option>
+        <option value="1">Sí</option>
+    </select>
+    <button (click)="addTeam()">Agregar</button>
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Favoritos</label>
+        <div class="col-sm-9" formArrayName="team">
+    
+            <div class="input-group mb-1" *ngFor="let team of teamArray.controls; let i = index">
+    
+                <input class="form-control" [formControlName]="i">
+                <p><strong>{{team.value.name}}</strong></p>
+                <p><strong>{{team.value.email}}</strong></p>
+                <p><strong>{{team.value.pass}}</strong></p>
+                <p><strong>{{team.value.admin}}</strong></p>    
+                <button class="btn btn-outline-danger" type="button">
+                    Eliminar
+                </button>
+            </div>
+    
+        </div>
+    </div>
+</form>
