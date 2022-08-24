@@ -10,7 +10,10 @@
         <i class="fa-solid fa-pen-to-square"></i>
       </button>
       <!-- <button *ngIf="isAdmin()" class="btn btn-danger" (click)="delete()"><i class="fa-solid fa-trash"></i></button> -->
-    </div>
+      <button type="button" class="btn notes"
+      [ngbPopover]="task.notes"
+      [openDelay]="500" triggers="mouseenter:mouseleave"><i style="background: yellow;" class="far fa-sticky-note"></i>
+    </button></div>
     <div class="col">
       <div class="form-check">
         <input class="form-check-input" type="checkbox" id="completeCheck" [checked]="checkDone()">

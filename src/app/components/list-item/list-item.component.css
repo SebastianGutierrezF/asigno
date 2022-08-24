@@ -17,4 +17,9 @@
 .item:hover {
     transform: scale(1.01);
     box-shadow: 1px 1px 5px gray;
+    z-index: 1;
+}
+
+.notes {
+    border: none;
 }
