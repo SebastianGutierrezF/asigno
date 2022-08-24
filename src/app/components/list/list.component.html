@@ -4,24 +4,26 @@
         <ul class="navbar-nav">
           <!-- Filter by asignment -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Responsable
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" *ngFor="let user of users" style="cursor: pointer;" (click)="filterByUser(user.name)">{{user.name}}</a></li>
             </ul>
           </li>
           <!-- Filter by status -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Estatus
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" style="cursor: pointer;" (click)="filterByStatus('Asignada')">Asignada</a></li>
+              <li><a class="dropdown-item" style="cursor: pointer;" (click)="filterByStatus('En proceso')">En proceso</a></li>
+              <li><a class="dropdown-item" style="cursor: pointer;" (click)="filterByStatus('Completada')">Completada</a></li>
             </ul>
           </li>
         </ul>
-        <app-datepicker></app-datepicker>
+        <app-datepicker (from)="setDateFrom($event)" (to)="setDateTo($event)"></app-datepicker>
         <form class="d-flex" [formGroup]="filterForm">
           <input class="form-control me-2" type="search" aria-label="Search" formControlName="search">
           <button type="button" class="btn btn-outline-success" (click)="search()">Buscar</button>

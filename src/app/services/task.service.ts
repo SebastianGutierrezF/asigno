@@ -21,4 +21,16 @@ export class TaskService {
       })
     }
   }
+
+  // getByDate() {
+  //   if (localStorage['admin'] == 1) {
+  //     this.ds.get('task', 'getAllByDate').subscribe((dato: any) => {
+  //       this.tasks = dato as TaskItem[];
+  //     })
+  //   } else {
+  //     this.ds.post('task', 'getAllowed', {id: localStorage['id']}).subscribe((dato: any) => {
+  //       this.tasks = dato as TaskItem[];
+  //     })
+  //   }
+  // }
 }

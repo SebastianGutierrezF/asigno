@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/interfaces/user';
 import { DataService } from 'src/app/services/data-service.service';
 import { TaskService } from 'src/app/services/task.service';
@@ -36,11 +37,11 @@ export class AddComponent implements OnInit {
     })
   }
 
-  setFrom(date: string) {    
+  setFrom(date: NgbDate) {    
     this.addForm.controls['start'].patchValue(date);
   }
   
-  setTo(date: string) {
+  setTo(date: NgbDate) {
     this.addForm.controls['end'].patchValue(date);
   }
 

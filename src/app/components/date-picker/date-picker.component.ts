@@ -12,15 +12,15 @@ export class DatePickerComponent {
 
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
-  @Output() from = new EventEmitter<string>;
-  @Output() to = new EventEmitter<string>;
+  @Output() from = new EventEmitter<NgbDate>;
+  @Output() to = new EventEmitter<NgbDate>;
 
   constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
     // Emite los valores de fechas from y to hacia el formulario para agregar o editar la actividad
-    this.from.emit(this.dateToString(this.fromDate));
-    this.to.emit(this.dateToString(this.toDate));
+    this.from.emit(this.fromDate);
+    this.to.emit(this.toDate);
   }
 
   onDateSelection(date: NgbDate) {
@@ -28,11 +28,11 @@ export class DatePickerComponent {
       this.fromDate = date;
     } else if (this.fromDate && !this.toDate && date && date.after(this.fromDate)) {
       this.toDate = date;
-      this.to.emit(this.dateToString(this.toDate));
+      this.to.emit(this.toDate);
     } else {
       this.toDate = null;
       this.fromDate = date;
-      this.from.emit(this.dateToString(this.fromDate));
+      this.from.emit(this.fromDate);
     }
   }
 

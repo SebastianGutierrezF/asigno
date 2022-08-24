@@ -1,8 +1,8 @@
 <li class="list-group-item item" [ngClass]="checkActive()">
-  <div class="row nowrap col-12">
+  <div class="row nowrap col-12 align-items-center">
     <strong class="col">{{ task.title }}</strong>
-    <div class="col">{{ task.start | date }}</div>
-    <div class="col">{{ task.end | date }}</div>
+    <div class="col">{{ task.start.month }}</div>
+    <div class="col">{{ task.end.month }}</div>
     <div class="col">{{ task.status }}</div>
     <div class="col">{{ task.name }}</div>
     <div class="col">

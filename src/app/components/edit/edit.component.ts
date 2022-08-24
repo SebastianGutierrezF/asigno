@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { TaskItem } from 'src/app/interfaces/task-item';
 import { User } from 'src/app/interfaces/user';
 import { DataService } from 'src/app/services/data-service.service';
@@ -61,11 +62,11 @@ export class EditComponent implements OnInit, OnChanges {
     return localStorage['admin'] == 1 ? true : false;
   }
 
-  setFrom(date: string) {
+  setFrom(date: NgbDate) {
     this.editForm.controls['start'].patchValue(date);
   }
 
-  setTo(date: string) {
+  setTo(date: NgbDate) {
     this.editForm.controls['end'].patchValue(date);
   }
 

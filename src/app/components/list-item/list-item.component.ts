@@ -1,10 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { TaskItem } from 'src/app/interfaces/task-item';
 import { DataService } from 'src/app/services/data-service.service';
-import { TaskService } from 'src/app/services/task.service';
-import { EditComponent } from '../edit/edit.component';
-import { ListComponent } from '../list/list.component';
 
 @Component({
   selector: 'app-list-item',
@@ -23,9 +20,9 @@ export class ListItemComponent implements OnInit {
 
   // Cambia el estilo si la actividad aún no empieza
   checkActive() {
-    const start: Date = new Date(this.task.start);
     const now: Date = new Date(Date.now());
-    return (start > now) ? 'itemInactive' : '';
+    const nowNgb: NgbDate = new NgbDate(now.getFullYear(), now.getMonth(), now.getDate());
+    return (this.task.start > nowNgb) ? 'itemInactive' : '';
   }
 
   checkDone() {    

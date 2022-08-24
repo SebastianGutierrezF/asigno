@@ -22,7 +22,6 @@ export class DataService {
 
   post(model: string, action: string, datos: any) {
     console.log(`${this.baseUrl}${model}.php?option=${action}`);
-    
     return this.http.post(`${this.baseUrl}${model}.php?option=${action}`, datos);
   }
 }
