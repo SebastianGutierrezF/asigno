@@ -19,6 +19,26 @@ export class UsersService {
       this.ds.post('task', 'getUsers', { id: localStorage.getItem('id') }).subscribe((dato: any) => {
         this.users = dato as User[];
       })
-    }   
+    }
+       
   }
+
+  addUser(data: User) {
+    this.ds.post('task', 'insertUser', data).subscribe((dato: any) => {
+      if (dato['status']) {
+        console.log(dato);
+        // Aqui va el swall
+      }
+    })
+  }
+
+  deleteUser(id: string) {
+    this.ds.post('task', 'deleteUser', {id: id}).subscribe((dato: any) => {
+      if (dato['status']) {
+        console.log(dato);
+        // Aquí va el swal
+      }
+    })
+  }
+  
 }

@@ -33,13 +33,6 @@ export class ListItemComponent implements OnInit {
     this.outTask.emit(this.task);
   }
 
-  delete() {
-    this.ds.post('task', 'delete', {id: this.task.id}).subscribe((dato: any) => {
-      if (dato['status']) {
-      }
-    })
-  }
-
   isAdmin() {
     return localStorage['admin'] == 1 ? true : false;
   }

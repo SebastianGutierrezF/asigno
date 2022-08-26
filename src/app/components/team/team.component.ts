@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Team } from 'src/app/interfaces/team';
-import { TeamService } from 'src/app/services/team.service';
+import { User } from 'src/app/interfaces/user';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-team',
@@ -10,27 +10,42 @@ import { TeamService } from 'src/app/services/team.service';
 })
 export class TeamComponent {
   teamForm: FormGroup = this.fb.group({
-    team: new FormArray([]),
     name: [, Validators.required],
     email: [, Validators.required],
     pass: [, Validators.required],
+    color: [, Validators.required],
     admin: [,]
   })
 
-  newMember: FormControl = this.fb.control('', Validators.required);
-  team: Team[] = [];
+  team: User[] = [];
 
-  constructor(private fb: FormBuilder, private ts: TeamService) {
-    this.ts.getTeam();
-    this.team = this.ts.team;
-  }  
-
-  get teamArray() {
-    return this.teamForm.get('team') as FormArray;
+  constructor(private fb: FormBuilder, private us: UsersService) {
+    this.update();
+  }
+  
+  update() {
+    this.us.getUsers();
+    setTimeout(() => {
+      this.team = this.us.users;
+    }, 1000);    
   }
 
-  addTeam() {
-    this.teamArray.push(this.fb.control(this.newMember, Validators.required));
+  // get teamArray() {
+  //   return this.teamForm.get('team') as FormArray;
+  // }
+
+  addUser() {
+    this.us.addUser(this.teamForm.value);
+    this.update();
+  }
+
+  deleteUser(index: string) {
+    this.us.deleteUser(index);
+    this.update();
+  }
+
+  notValid() {
+    return this.teamForm.invalid && this.teamForm.touched;
   }
 
 }

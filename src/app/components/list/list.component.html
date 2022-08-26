@@ -32,7 +32,6 @@
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add">Agregar</button>
       </div>
 </nav>
-
 <!-- List headers -->
 <div class="row nowrap listHeader">
   <strong class="col-2">Título</strong>
@@ -47,6 +46,9 @@
 <!-- Task list -->
 <div class="container-fluid list">
   <ul class="list-group">
+      <div *ngIf="loading" class="spinner-border text-success mx-auto my-5" role="status">
+        <span class="sr-only">Loading tasks...</span>
+      </div>
       <app-list-item *ngFor="let task of tasks" [task]="task" (outTask)="setCurrentTask($event)"></app-list-item>
   </ul>
 </div>

@@ -21,6 +21,7 @@ export class ListComponent {
   });
   from?: NgbDate;
   to?: NgbDate;
+  loading = true;
 
   constructor(private us: UsersService, private ts: TaskService, private fb: FormBuilder) {
     this.update();
@@ -33,7 +34,8 @@ export class ListComponent {
     setTimeout(() => {
       this.users = this.us.users;
       this.tasks = this.ts.tasks;
-    }, 1000);
+      this.loading = false;
+    }, 2000);
   }
 
   setCurrentTask(currentTask: TaskItem) {

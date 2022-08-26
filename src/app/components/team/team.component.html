@@ -1,28 +1,48 @@
-<form [formGroup]="teamForm">
-    <input type="text" formControlName="name">
-    <input type="email" formControlName="email">
-    <input type="password" formControlName="pass">
-    <select formControlName="admin">
-        <option value="0">No</option>
-        <option value="1">Sí</option>
-    </select>
-    <button (click)="addTeam()">Agregar</button>
-    <div class="mb-3 row">
-        <label class="col-sm-3 col-form-label">Favoritos</label>
-        <div class="col-sm-9" formArrayName="team">
-    
-            <div class="input-group mb-1" *ngFor="let team of teamArray.controls; let i = index">
-    
-                <input class="form-control" [formControlName]="i">
-                <p><strong>{{team.value.name}}</strong></p>
-                <p><strong>{{team.value.email}}</strong></p>
-                <p><strong>{{team.value.pass}}</strong></p>
-                <p><strong>{{team.value.admin}}</strong></p>    
-                <button class="btn btn-outline-danger" type="button">
-                    Eliminar
-                </button>
+<div class="container-fluid team">
+    <form class="" [formGroup]="teamForm">
+        <div class="row justify-content-center align-items-center m-3">
+            <div class="col">
+                <input class="form-control" placeholder="Nombre completo" type="text" formControlName="name">
+
             </div>
-    
+            <div class="col">
+                <input class="form-control" placeholder="Correo" type="email" formControlName="email">
+
+            </div>
+            <div class="col">
+                <input class="form-control" placeholder="Contraseña" type="password" formControlName="pass">
+
+            </div>
+            <div class="col-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="admin">
+                    <label class="form-check-label" for="autoSizingCheck">¿Es admin?</label>
+                </div>
+            </div>
+            <div class="col">
+                <button class="btn btn-secondary" [disabled]="!teamForm.valid" (click)="addUser()">Agregar</button>
+            </div>
+            <div *ngIf="notValid()" class="row mt-3 text-danger">Debes llenar todos los campos</div>
         </div>
-    </div>
-</form>
+        
+        <hr>
+        <h3 class="mx-3">Equipo</h3>
+
+        <div class="m-3 row">
+            <div class="col-9">
+                <div class="input-group mb-1" *ngFor="let user of team">
+                    <input class="form-control">
+                    <p><strong>{{user.name}}</strong></p>
+                    <p><strong>{{user.email}}</strong></p>
+                    <p><strong>{{user.pass}}</strong></p>
+                    <p><strong>{{user.color}}</strong></p>    
+                    <p><strong>{{user.admin}}</strong></p>
+                    <button class="btn btn-outline-danger" type="button" (click)="deleteUser(user.id)">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>

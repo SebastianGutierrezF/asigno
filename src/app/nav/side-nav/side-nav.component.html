@@ -15,7 +15,7 @@
             <a class="nav-link" routerLink="calendar">Calendario</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="team">Equipo</a>
+            <a *ngIf="isAdmin()" class="nav-link" routerLink="team">Equipo</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" (click)="logout()" routerLink="">Cerrar sesión</a>
