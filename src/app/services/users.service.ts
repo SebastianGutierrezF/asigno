@@ -32,7 +32,7 @@ export class UsersService {
     })
   }
 
-  deleteUser(id: string) {
+  deleteUser(id: number) {
     this.ds.post('task', 'deleteUser', {id: id}).subscribe((dato: any) => {
       if (dato['status']) {
         console.log(dato);

@@ -10,14 +10,13 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class TeamComponent {
   teamForm: FormGroup = this.fb.group({
+    team: new FormArray([], Validators.required),
     name: [, Validators.required],
     email: [, Validators.required],
     pass: [, Validators.required],
     color: [, Validators.required],
     admin: [,]
   })
-
-  team: User[] = [];
 
   constructor(private fb: FormBuilder, private us: UsersService) {
     this.update();
@@ -26,20 +25,30 @@ export class TeamComponent {
   update() {
     this.us.getUsers();
     setTimeout(() => {
-      this.team = this.us.users;
+      this.teamArray.clear();
+      this.us.users.forEach((team) => {
+        const user = this.fb.group({
+          name: [team.name, Validators.required],
+          email: [team.email, Validators.required],
+          pass: [team.pass, Validators.required],
+          color: [team.color, Validators.required],
+          admin: [team.admin, Validators.required],
+        })
+        this.teamArray.push(user);
+      });
     }, 1000);    
   }
-
-  // get teamArray() {
-  //   return this.teamForm.get('team') as FormArray;
-  // }
-
+  
+  get teamArray() {
+    return this.teamForm.controls['team'] as FormArray;
+  }
+  
   addUser() {
     this.us.addUser(this.teamForm.value);
     this.update();
   }
 
-  deleteUser(index: string) {
+  deleteUser(index: number) {
     this.us.deleteUser(index);
     this.update();
   }

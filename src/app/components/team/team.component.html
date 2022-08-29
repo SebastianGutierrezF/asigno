@@ -3,24 +3,24 @@
         <div class="row justify-content-center align-items-center m-3">
             <div class="col">
                 <input class="form-control" placeholder="Nombre completo" type="text" formControlName="name">
-
             </div>
             <div class="col">
                 <input class="form-control" placeholder="Correo" type="email" formControlName="email">
-
             </div>
             <div class="col">
                 <input class="form-control" placeholder="Contraseña" type="password" formControlName="pass">
-
             </div>
-            <div class="col-2">
+            <div class="col-1">
+                <input class="form-control" placeholder="Color" type="color" formControlName="color">
+            </div>
+            <div class="col-1">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="admin">
-                    <label class="form-check-label" for="autoSizingCheck">¿Es admin?</label>
+                    <label class="form-check-label" for="autoSizingCheck">ADMIN</label>
                 </div>
             </div>
             <div class="col">
-                <button class="btn btn-secondary" [disabled]="!teamForm.valid" (click)="addUser()">Agregar</button>
+                <button class="btn btn-success" [disabled]="!teamForm.valid" (click)="addUser()"><i class="fas fa-user-plus"></i></button>
             </div>
             <div *ngIf="notValid()" class="row mt-3 text-danger">Debes llenar todos los campos</div>
         </div>
@@ -29,20 +29,28 @@
         <h3 class="mx-3">Equipo</h3>
 
         <div class="m-3 row">
-            <div class="col-9">
-                <div class="input-group mb-1" *ngFor="let user of team">
-                    <input class="form-control">
-                    <p><strong>{{user.name}}</strong></p>
-                    <p><strong>{{user.email}}</strong></p>
-                    <p><strong>{{user.pass}}</strong></p>
-                    <p><strong>{{user.color}}</strong></p>    
-                    <p><strong>{{user.admin}}</strong></p>
-                    <button class="btn btn-outline-danger" type="button" (click)="deleteUser(user.id)">
-                        <i class="fas fa-times"></i>
-                    </button>
+            <div class="col-12" formArrayName="team">
+                <div class="input-group mb-1" *ngFor="let userForm of teamArray.controls; let i = index">
+                    <form class="row gap-1 align-items-center w-full" [formGroupName]="i">
+                        <input class="form-control col" formControlName="name" type="text" placeholder="Nombre">
+                        <input class="form-control col" formControlName="email" type="email" placeholder="Email">
+                        <input class="form-control col" formControlName="pass" type="password" placeholder="Contraseña">
+                        <div class="col-1">
+                            <input class="form-control" formControlName="color" type="color" placeholder="Color">
+                        </div>
+                        <div class="form-check col-2">
+                            <input class="form-check-input" type="checkbox">
+                            <label class="form-check-label">ADMIN</label>
+                        </div>
+                        <button class="btn btn-info col-1">
+                            <i class="fas fa-check"></i>
+                        </button>
+                        <button class="btn btn-outline-danger col-1" type="button" (click)="deleteUser(i)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
-
     </form>
 </div>
