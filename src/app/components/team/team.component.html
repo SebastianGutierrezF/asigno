@@ -15,7 +15,7 @@
             </div>
             <div class="col-1">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="admin">
+                    <input class="form-check-input" type="checkbox" (change)="submitCheckboxChange($event)">
                     <label class="form-check-label" for="autoSizingCheck">ADMIN</label>
                 </div>
             </div>
@@ -39,13 +39,13 @@
                             <input class="form-control" formControlName="color" type="color" placeholder="Color">
                         </div>
                         <div class="form-check col-2">
-                            <input class="form-check-input" type="checkbox">
+                            <input class="form-check-input" type="checkbox" [checked]="isAdmin(i)"  (change)="editCheckboxChange(i, $event)">
                             <label class="form-check-label">ADMIN</label>
                         </div>
-                        <button class="btn btn-info col-1">
+                        <button class="btn btn-outline-success col-1" [disabled]="!teamArray.valid" (click)="editUser(i)">
                             <i class="fas fa-check"></i>
                         </button>
-                        <button class="btn btn-outline-danger col-1" type="button" (click)="deleteUser(i)">
+                        <button class="btn btn-outline-danger col-1" (click)="deleteUser(i)">
                             <i class="fas fa-times"></i>
                         </button>
                     </form>

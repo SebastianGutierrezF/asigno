@@ -32,6 +32,16 @@ export class UsersService {
     })
   }
 
+  editUser(data: User) {
+    this.ds.post('task', 'editUser', data).subscribe((dato: any) => {
+      if (dato['status']) {
+        // Aqui va el swal
+        console.log(dato);
+        
+      }
+    })
+  }
+
   deleteUser(id: number) {
     this.ds.post('task', 'deleteUser', {id: id}).subscribe((dato: any) => {
       if (dato['status']) {

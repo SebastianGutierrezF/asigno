@@ -10,12 +10,13 @@ import { UsersService } from 'src/app/services/users.service';
 })
 export class TeamComponent {
   teamForm: FormGroup = this.fb.group({
-    team: new FormArray([], Validators.required),
+    team: new FormArray([]),
+    id: [,],
     name: [, Validators.required],
     email: [, Validators.required],
     pass: [, Validators.required],
     color: [, Validators.required],
-    admin: [,]
+    admin: [0,]
   })
 
   constructor(private fb: FormBuilder, private us: UsersService) {
@@ -28,6 +29,7 @@ export class TeamComponent {
       this.teamArray.clear();
       this.us.users.forEach((team) => {
         const user = this.fb.group({
+          id: [team.id],
           name: [team.name, Validators.required],
           email: [team.email, Validators.required],
           pass: [team.pass, Validators.required],
@@ -42,15 +44,40 @@ export class TeamComponent {
   get teamArray() {
     return this.teamForm.controls['team'] as FormArray;
   }
+
+  isAdmin(i: number) {
+    return this.teamArray.controls[i].value.admin == '1';
+  }
+
+  editCheckboxChange(i: number, event: any) {
+    if (event.target.checked) {
+      this.teamArray.controls[i].value.admin = 1;
+    } else {
+      this.teamArray.controls[i].value.admin = 0;
+    }
+  }
+
+  submitCheckboxChange(event: any) {
+    if (event.target.checked) {
+      this.teamForm.controls['admin'].setValue(1);
+    } else {
+      this.teamForm.controls['admin'].setValue(0);
+    }
+  }
   
   addUser() {
     this.us.addUser(this.teamForm.value);
     this.update();
   }
+  
+  editUser(i: number) {
+    this.us.editUser(this.teamArray.controls[i].value);
+  }
 
   deleteUser(index: number) {
-    this.us.deleteUser(index);
-    this.update();
+    console.log(this.teamArray.controls[index].value.id);
+    
+    this.us.deleteUser(this.teamArray.controls[index].value.id);
   }
 
   notValid() {
