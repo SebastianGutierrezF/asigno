@@ -71,8 +71,8 @@ export class CalendarComponent {
         // Agrega sólo las tareas asignadas o en proceso a la lista de eventos del calendario
         if (task.status != "Completada") {
           this.events.push({
-            start: task.start,
-            end: task.end,
+            start: new Date(task.start),
+            end: new Date(task.end),
             title: task.title,
             // Encuentra al usuario asignado a la tarea y obtiene su color
             color: {primary: this.us.users.find((user) => task.userID == user.id)!.color, secondary: ''},

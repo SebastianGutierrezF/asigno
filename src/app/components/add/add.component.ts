@@ -29,17 +29,15 @@ export class AddComponent implements OnInit {
 
   add() { 
     this.ts.insertTask(this.addForm.value);
+    this.addForm.reset();
   }
 
   setFrom(date: string) {    
     this.addForm.controls['start'].patchValue(date);
-    console.log(this.addForm.controls['start'].value);
   }
   
   setTo(date: string) {
-    this.addForm.controls['end'].patchValue(date);
-    console.log(this.addForm.controls['end'].value);
-    
+    this.addForm.controls['end'].patchValue(date);    
   }
   
   notValid(control: string) {

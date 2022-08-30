@@ -1,8 +1,8 @@
 export interface TaskItem {
     id: string,
     title: string,
-    start: Date,
-    end: Date,
+    start: string,
+    end: string,
     notes: string
     status: string,
     userID: string,

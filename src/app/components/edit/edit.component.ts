@@ -59,11 +59,11 @@ export class EditComponent implements OnInit, OnChanges {
     return localStorage['admin'] == 1 ? true : false;
   }
 
-  setFrom(date: Date) {
+  setFrom(date: string) {
     this.editForm.controls['start'].patchValue(date);
   }
 
-  setTo(date: Date) {
+  setTo(date: string) {
     this.editForm.controls['end'].patchValue(date);
   }
 
