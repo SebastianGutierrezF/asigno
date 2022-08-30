@@ -108,14 +108,16 @@ export class CalendarComponent {
     this.ts.getTasks();
     this.us.getUsers();
     setTimeout(() => {
-      this.ts.tasks.forEach((task) => {              
-        this.events.push({
-          start: new Date(task.start as string),
-          end: new Date(task.end as string), 
-          title: task.title,
-          color: {primary: this.us.users.find((user) => task.user == user.id)!.color, secondary: ''},
-          allDay: true
-        })
+      this.ts.tasks.forEach((task) => {   
+        if (task.status != "Completada") {
+          this.events.push({
+            start: new Date(task.start as string),
+            end: new Date(task.end as string), 
+            title: task.title,
+            color: {primary: this.us.users.find((user) => task.user == user.id)!.color, secondary: ''},
+            allDay: true
+          })
+        }           
       })
       this.ready = true;
     }, 1000);
