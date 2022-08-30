@@ -19,7 +19,9 @@ export class EditComponent implements OnInit, OnChanges {
     notes: [, Validators.required],
     start: [, Validators.required],
     end: [, Validators.required],
-    status: [, Validators.required]
+    status: [, Validators.required],
+    startTime: [, Validators.required],
+    endTime: [, Validators.required]
   })
 
   @Input() users: User[] = [];
@@ -36,7 +38,9 @@ export class EditComponent implements OnInit, OnChanges {
       notes: this.currentTask?.notes,
       start: this.currentTask?.start,
       end: this.currentTask?.end,
-      status: this.currentTask?.status
+      status: this.currentTask?.status,
+      startTime: this.currentTask?.start.split(' ')[1],
+      endTime: this.currentTask?.end.split(' ')[1]
     })
   }
 
@@ -44,7 +48,27 @@ export class EditComponent implements OnInit, OnChanges {
   }
 
   update() {
+    // Adjunta el tiempo inicial a la fecha inicial
+    const startDate = (this.editForm.controls['start'].value as string).split(' ')[0];
+    const startTime = this.editForm.controls['startTime'].value;
+    this.editForm.controls['start'].patchValue(startDate + ' ' + startTime);
+
+    // Adjunta el tiempo final a la fecha final
+    const endDate = (this.editForm.controls['end'].value as string).split(' ')[0];
+    const endTime = this.editForm.controls['endTime'].value;
+    this.editForm.controls['end'].patchValue(endDate + ' ' + endTime);
+    
+    // Envia los datos con el servicio
     this.ts.updateTask(this.editForm.value);
+    this.editForm.reset();
+  }
+
+  setStartTime(time: string) {
+    this.editForm.controls['startTime'].patchValue(time);
+  }
+  
+  setEndTime(time: string) {
+    this.editForm.controls['endTime'].patchValue(time);
   }
   
   delete() {

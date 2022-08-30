@@ -52,13 +52,10 @@ export class AddComponent implements OnInit {
   }
 
   setStartTime(time: string) {
-    console.log(time);
-    
     this.addForm.controls['startTime'].patchValue(time);
   }
   
   setEndTime(time: string) {
-    console.log(time);
     this.addForm.controls['endTime'].patchValue(time);
   }
   

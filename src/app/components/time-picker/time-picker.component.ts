@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { NgbTimeAdapter, NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-time-picker',
@@ -14,17 +14,21 @@ export class TimePickerComponent implements OnChanges {
   @Output() outStartTime = new EventEmitter<string>;
   @Output() outEndTime = new EventEmitter<string>;
   
-  
   constructor() {}
 
   ngOnChanges(): void {
     if (this.inStartTime && this.inEndTime) {
-      const inStartTime = this.inStartTime?.split(':');
-      const inEndTime = this.inEndTime?.split(':');
-      this.startTime.hour = Number.parseInt(inStartTime[0]);
-      this.startTime.minute = Number.parseInt(inStartTime[1]);  
-      this.endTime.hour = Number.parseInt(inEndTime[0]);
-      this.endTime.minute = Number.parseInt(inEndTime[1]);  
+      // Separa el tiempo de la fecha recibida con input
+      const sDateTime = this.inStartTime.split(' ')[1];
+      const eDateTime = this.inEndTime.split(' ')[1];      
+
+      // Separa horas y minutos de el tiempo recibido
+      const inStartTime = sDateTime?.split(':');
+      const inEndTime = eDateTime?.split(':');      
+
+      // Asigna los valores correspondientes al selector de tiempo para editarlo
+      this.startTime = {hour: Number.parseInt(inStartTime[0]), minute: Number.parseInt(inStartTime[1]), second: 0};
+      this.endTime = {hour: Number.parseInt(inEndTime[0]), minute: Number.parseInt(inEndTime[1]), second: 0};
     }
   }
 
