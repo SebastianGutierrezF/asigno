@@ -21,8 +21,8 @@ export class ListItemComponent implements OnInit {
   // Cambia el estilo si la actividad aún no empieza
   checkActive() {
     const now: Date = new Date(Date.now());
-    const nowNgb: NgbDate = new NgbDate(now.getFullYear(), now.getMonth(), now.getDate());    
-    return (false) ? 'itemInactive' : '';
+    const taskStart: Date = new Date(this.task.start);
+    return (now < taskStart) ? 'itemInactive' : '';
   }
 
   checkDone() {    
