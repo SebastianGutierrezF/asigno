@@ -21,6 +21,7 @@ export class ListComponent {
   });
   start?: Date;
   end?: Date;
+  completed: TaskItem[] = [];
   loading = true;
 
   constructor(private us: UsersService, private ts: TaskService, private fb: FormBuilder) {
@@ -34,9 +35,9 @@ export class ListComponent {
     // Para que le de tiempo al servicio de obtener los datos y poblar la lista
     setTimeout(() => {
       this.users = this.us.users;
-      this.tasks = this.ts.tasks;
+      this.reset();
       this.loading = false;
-    }, 2000);
+    }, 1000);
   }
 
   setCurrentTask(currentTask: TaskItem) {
@@ -86,12 +87,21 @@ export class ListComponent {
 
   filterByStatus(status: string) {
     this.reset();
-    this.tasks = this.tasks.filter((task) => {
-      return task.status == status;
-    })
+    if (status == 'Completada') {
+      this.tasks = this.completed;
+    } else {
+      this.tasks = this.tasks.filter((task) => {
+        return task.status == status;
+      })
+    }
   }
 
   reset() {
-    this.tasks = this.ts.tasks;
+    this.tasks = this.ts.tasks.filter((task) => {
+      return task.status == 'Asignada' || task.status == 'En proceso';
+    })
+    this.completed = this.ts.tasks.filter((task) => {
+      return task.status == 'Completada';
+    })
   }
 }
