@@ -16,11 +16,9 @@ import {
   parseISO,
 } from 'date-fns';
 import { Subject } from 'rxjs';
-import { NgbDateParserFormatter, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
   CalendarEventAction,
-  CalendarEventTimesChangedEvent,
   CalendarView,
 } from 'angular-calendar';
 import { TaskService } from 'src/app/services/task.service';
@@ -60,46 +58,7 @@ export class CalendarComponent {
 
   refresh = new Subject<void>();
 
-  events: CalendarEvent[] = [
-    // {
-    //   start: subDays(startOfDay(new Date()), 1),
-    //   end: addDays(new Date(), 1),
-    //   title: 'A 3 day event',
-    //   color: { ...colors['red'] },
-    //   actions: this.actions,
-    //   allDay: true,
-    //   resizable: {
-    //     beforeStart: true,
-    //     afterEnd: true,
-    //   },
-    //   draggable: true,
-    // },
-    // {
-    //   start: startOfDay(new Date()),
-    //   title: 'An event with no end date',
-    //   color: { ...colors['yellow'] },
-    //   actions: this.actions,
-    // },
-    // {
-    //   start: subDays(endOfMonth(new Date()), 3),
-    //   end: addDays(endOfMonth(new Date()), 3),
-    //   title: 'A long event that spans 2 months',
-    //   color: { ...colors['blue'] },
-    //   allDay: true,
-    // },
-    // {
-    //   start: addHours(startOfDay(new Date()), 2),
-    //   end: addHours(new Date(), 2),
-    //   title: 'A draggable and resizable event',
-    //   color: { ...colors['yellow'] },
-    //   actions: this.actions,
-    //   resizable: {
-    //     beforeStart: true,
-    //     afterEnd: true,
-    //   },
-    //   draggable: true,
-    // },
-  ];
+  events: CalendarEvent[] = [];
 
   activeDayIsOpen: boolean = true;
   ready: boolean = false;
@@ -109,16 +68,18 @@ export class CalendarComponent {
     this.us.getUsers();
     setTimeout(() => {
       this.ts.tasks.forEach((task) => {   
+        // Agrega sólo las tareas asignadas o en proceso a la lista de eventos del calendario
         if (task.status != "Completada") {
           this.events.push({
-            start: new Date(task.start as string),
-            end: new Date(task.end as string), 
+            start: task.start,
+            end: task.end,
             title: task.title,
-            color: {primary: this.us.users.find((user) => task.user == user.id)!.color, secondary: ''},
-            allDay: true
+            // Encuentra al usuario asignado a la tarea y obtiene su color
+            color: {primary: this.us.users.find((user) => task.userID == user.id)!.color, secondary: ''},
           })
         }           
       })
+      // Boleano que indica cuando ya está lista la carga de datos antes de mostrar la vista
       this.ready = true;
     }, 1000);
   }

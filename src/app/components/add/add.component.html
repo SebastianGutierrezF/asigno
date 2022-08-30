@@ -18,7 +18,7 @@
       <label for="dates"><small>Fecha de inicio y fin de la actividad</small></label>
     </div>
   </div>
-  <app-datepicker id="dates" (from)="setFrom($event)" (to)="setTo($event)"></app-datepicker>
+  <app-datepicker id="dates" (start)="setFrom($event)" (end)="setTo($event)"></app-datepicker>
   <button class="btn btn-success mt-3" (click)="add()" (keyup.enter)="add()" [disabled]="!addForm.valid">Agregar actividad</button>
 </form>
 

@@ -40,7 +40,7 @@ export class ListItemComponent implements OnInit {
       'title': this.task.title,
       'start': this.task.start,
       'end': this.task.end,
-      'asignment': this.task.user,
+      'asignment': this.task.userID,
       'status': this.task.status,
       'notes': this.task.notes
     }

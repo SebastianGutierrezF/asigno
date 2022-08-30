@@ -32,7 +32,7 @@ export class EditComponent implements OnInit, OnChanges {
     this.editForm.patchValue({
       id: this.currentTask?.id,
       title: this.currentTask?.title,
-      asignment: this.currentTask?.user,
+      asignment: this.currentTask?.userID,
       notes: this.currentTask?.notes,
       start: this.currentTask?.start,
       end: this.currentTask?.end,
@@ -59,11 +59,11 @@ export class EditComponent implements OnInit, OnChanges {
     return localStorage['admin'] == 1 ? true : false;
   }
 
-  setFrom(date: NgbDate) {
+  setFrom(date: Date) {
     this.editForm.controls['start'].patchValue(date);
   }
 
-  setTo(date: NgbDate) {
+  setTo(date: Date) {
     this.editForm.controls['end'].patchValue(date);
   }
 

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {NgbDate, NgbCalendar, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -6,21 +6,32 @@ import {NgbDate, NgbCalendar, NgbDateParserFormatter} from '@ng-bootstrap/ng-boo
   templateUrl: './date-picker.component.html',
   styleUrls: ['./date-picker.component.css']
 })
-export class DatePickerComponent {
+export class DatePickerComponent implements OnChanges {
 
   hoveredDate: NgbDate | null = null;
 
   fromDate: NgbDate | null;
   toDate: NgbDate | null;
-  @Output() from = new EventEmitter<NgbDate>;
-  @Output() to = new EventEmitter<NgbDate>;
+  @Output() start = new EventEmitter<string>;
+  @Output() end = new EventEmitter<string>;
+  @Input() inStart?: string; 
+  @Input() inEnd?: string; 
+
 
   constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
     // Emite los valores de fechas from y to hacia el formulario para agregar o editar la actividad
-    this.from.emit(this.fromDate);
-    this.to.emit(this.toDate);
+    this.start.emit(this.formatter.format(this.fromDate));
+    this.end.emit(this.formatter.format(this.toDate));
+  }
+
+  // Detecta cuando el datepicker recibe valores y convierte las fechas a NgbDate
+  ngOnChanges(): void {
+    if (this.inStart && this.inEnd) {
+      this.fromDate = this.formatter.parse(this.inStart) as NgbDate;
+      this.toDate = this.formatter.parse(this.inEnd) as NgbDate;
+    }
   }
 
   onDateSelection(date: NgbDate) {
@@ -28,17 +39,12 @@ export class DatePickerComponent {
       this.fromDate = date;
     } else if (this.fromDate && !this.toDate && date && date.after(this.fromDate)) {
       this.toDate = date;
-      this.to.emit(this.toDate);
+      this.end.emit(this.formatter.format(this.toDate));
     } else {
       this.toDate = null;
       this.fromDate = date;
-      this.from.emit(this.fromDate);
+      this.start.emit(this.formatter.format(this.fromDate));
     }
-  }
-
-  // Formate la fecha de tipo NgbDate a cadena
-  dateToString(date: NgbDate) {
-    return date.year.toString() + '-' + date.month.toString() + '-' + date.day.toString();
   }
 
   isHovered(date: NgbDate) {

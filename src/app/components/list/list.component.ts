@@ -19,8 +19,8 @@ export class ListComponent {
   filterForm: FormGroup = this.fb.group({
     search: [],
   });
-  from?: NgbDate;
-  to?: NgbDate;
+  start?: Date;
+  end?: Date;
   loading = true;
 
   constructor(private us: UsersService, private ts: TaskService, private fb: FormBuilder) {
@@ -54,24 +54,26 @@ export class ListComponent {
     });
   }
 
-  setDateFrom(date: NgbDate) {
-      this.from = date;
+  setDateFrom(date: string) {
+      this.start = new Date(date);
       this.filterByDate();
   }
 
-  setDateTo(date: NgbDate) {
-      this.to = date;
+  setDateTo(date: string) {
+      this.end = new Date(date);
       this.filterByDate();
   }
 
   filterByDate() {
     // Executes search only if both from and to dates are set
     this.reset();
-    if (this.to && this.from) {
+    if (this.start && this.end) {
       this.tasks = this.tasks.filter((task) => {
-        return task.start >= this.from! && task.end <= this.to!;
+        const taskStart = new Date(task.start);
+        const taskEnd = new Date(task.end);
+        return taskStart >= this.start! && taskEnd <= this.end!;
       });
-      this.to = this.from = undefined;
+      this.start = this.end = undefined;
     }
   }
 

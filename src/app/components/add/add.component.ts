@@ -21,7 +21,7 @@ export class AddComponent implements OnInit {
 
   @Input() users: User[] = [];
 
-  constructor(private fb: FormBuilder, private ds: DataService, private ts: TaskService) {
+  constructor(private fb: FormBuilder, private ts: TaskService) {
   }
 
   ngOnInit(): void {
@@ -31,14 +31,17 @@ export class AddComponent implements OnInit {
     this.ts.insertTask(this.addForm.value);
   }
 
-  setFrom(date: NgbDate) {    
+  setFrom(date: string) {    
     this.addForm.controls['start'].patchValue(date);
+    console.log(this.addForm.controls['start'].value);
   }
   
-  setTo(date: NgbDate) {
+  setTo(date: string) {
     this.addForm.controls['end'].patchValue(date);
+    console.log(this.addForm.controls['end'].value);
+    
   }
-
+  
   notValid(control: string) {
     return this.addForm.controls[control].touched && this.addForm.controls[control].errors;
   }

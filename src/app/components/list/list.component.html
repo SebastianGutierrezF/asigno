@@ -23,7 +23,7 @@
             </ul>
           </li>
         </ul>
-        <app-datepicker (from)="setDateFrom($event)" (to)="setDateTo($event)"></app-datepicker>
+        <app-datepicker (start)="setDateFrom($event)" (end)="setDateTo($event)"></app-datepicker>
         <form class="d-flex" [formGroup]="filterForm">
           <input class="form-control me-2" type="search" aria-label="Search" formControlName="search">
           <button type="button" class="btn btn-outline-success" (click)="search()">Buscar</button>
