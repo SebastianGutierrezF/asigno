@@ -1,8 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/interfaces/user';
-import { DataService } from 'src/app/services/data-service.service';
 import { TaskService } from 'src/app/services/task.service';
 
 @Component({
@@ -16,7 +14,9 @@ export class AddComponent implements OnInit {
     asignment: [, Validators.required],
     notes: [, Validators.required],
     start: [, Validators.required],
-    end: [, Validators.required]
+    end: [, Validators.required],
+    startTime: [, Validators.required],
+    endTime: [, Validators.required]
   })
 
   @Input() users: User[] = [];
@@ -27,7 +27,18 @@ export class AddComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  add() { 
+  add() {
+    // Adjunta el tiempo inicial a la fecha inicial
+    const startDate = this.addForm.controls['start'].value;
+    const startTime = this.addForm.controls['startTime'].value;
+    this.addForm.controls['start'].patchValue(startDate + ' ' + startTime);
+
+    // Adjunta el tiempo final a la fecha final
+    const endDate = this.addForm.controls['end'].value;
+    const endTime = this.addForm.controls['endTime'].value;
+    this.addForm.controls['end'].patchValue(endDate + ' ' + endTime);    
+    
+    // Envia los datos con el servicio
     this.ts.insertTask(this.addForm.value);
     this.addForm.reset();
   }
@@ -38,6 +49,17 @@ export class AddComponent implements OnInit {
   
   setTo(date: string) {
     this.addForm.controls['end'].patchValue(date);    
+  }
+
+  setStartTime(time: string) {
+    console.log(time);
+    
+    this.addForm.controls['startTime'].patchValue(time);
+  }
+  
+  setEndTime(time: string) {
+    console.log(time);
+    this.addForm.controls['endTime'].patchValue(time);
   }
   
   notValid(control: string) {

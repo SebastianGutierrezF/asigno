@@ -13,8 +13,18 @@
     <textarea type="text" id="notas" class="form-control" style="height: 200px;" formControlName="notes"></textarea>
     <label for="notas">Notas</label>
   </div>
-  <label><small>Fecha de inicio y fin de la actividad</small></label>
-  <app-datepicker (start)="setFrom($event)" (end)="setTo($event)" [inStart]="currentTask?.start" [inEnd]="currentTask?.end"></app-datepicker>
+  <label for="date"><small>Fecha de inicio y fin de la actividad</small></label>
+  <app-datepicker id="date" (start)="setFrom($event)" (end)="setTo($event)" [inStart]="currentTask?.start" [inEnd]="currentTask?.end"></app-datepicker>
+  <div class="row gap-5 mt-3 justify-content-center">
+    <div class="col-12 col-md-4">
+      <label for="timeStart"><small>Hora de inicio</small></label>
+      <app-time-picker id="timeStart"></app-time-picker>
+    </div>
+    <div class="col-12 col-md-4">
+      <label for="timeEnd"><small>Hora de termino</small></label>
+      <app-time-picker class="col-3" id="timeEnd"></app-time-picker>
+    </div>
+  </div>
   <hr>
   <div class="row mt-3 justify-content-center">
     <div class="form-floating col-5">
