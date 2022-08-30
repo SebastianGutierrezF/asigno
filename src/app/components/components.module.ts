@@ -15,7 +15,6 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { TeamComponent } from './team/team.component';
 
-
 @NgModule({
   declarations: [
     ListComponent,
@@ -35,7 +34,7 @@ import { TeamComponent } from './team/team.component';
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
   ]
 })
 export class ComponentsModule { }

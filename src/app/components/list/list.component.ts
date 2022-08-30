@@ -28,6 +28,7 @@ export class ListComponent {
   }
 
   update() {
+    this.loading = true;
     this.us.getUsers();
     this.ts.getTasks();
     // Para que le de tiempo al servicio de obtener los datos y poblar la lista
@@ -77,7 +78,7 @@ export class ListComponent {
   filterByUser(name: string) {
     this.reset();
     this.tasks = this.tasks.filter((task) => {
-      return task.name == name;
+      return task.userName == name;
     });
   }
 

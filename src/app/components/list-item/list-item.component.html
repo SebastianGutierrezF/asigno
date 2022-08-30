@@ -1,10 +1,10 @@
 <li class="list-group-item item" [ngClass]="checkActive()">
   <div class="row nowrap col-12 align-items-center">
     <strong class="col">{{ task.title }}</strong>
-    <div class="col">{{ task.start.month }}</div>
-    <div class="col">{{ task.end.month }}</div>
+    <div class="col">{{ task.start }}</div>
+    <div class="col">{{ task.end }}</div>
     <div class="col">{{ task.status }}</div>
-    <div class="col">{{ task.name }}</div>
+    <div class="col">{{ task.userName }}</div>
     <div class="col">
       <button class="btn" data-bs-toggle="modal" data-bs-target="#edit" (click)="sendCurrentItem()">
         <i class="fa-solid fa-pen-to-square"></i>
@@ -16,7 +16,7 @@
     </button></div>
     <div class="col">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="completeCheck" [checked]="checkDone()">
+        <input class="form-check-input" type="checkbox" id="completeCheck" [checked]="checkDone()" (change)="editCheckboxChange($event)">
         <label class="form-check-label" for="completeCheck">
           Completar
         </label>

@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavModule } from './nav/nav.module';
 import { ComponentsModule } from './components/components.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [

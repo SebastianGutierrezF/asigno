@@ -3,9 +3,10 @@ import { NgbDate } from "@ng-bootstrap/ng-bootstrap";
 export interface TaskItem {
     id: string,
     title: string,
-    start: NgbDate,
-    end: NgbDate,
+    start: NgbDate | string,
+    end: NgbDate | string,
     status: string,
-    name: string,
+    userName: string,
+    user: string,
     notes: string
 }

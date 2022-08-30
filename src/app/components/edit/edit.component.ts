@@ -4,6 +4,7 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { TaskItem } from 'src/app/interfaces/task-item';
 import { User } from 'src/app/interfaces/user';
 import { DataService } from 'src/app/services/data-service.service';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-edit',
@@ -24,14 +25,14 @@ export class EditComponent implements OnInit, OnChanges {
   @Input() users: User[] = [];
   @Input() currentTask?: TaskItem;
 
-  constructor(private fb: FormBuilder, private ds: DataService) { }
+  constructor(private fb: FormBuilder, private ds: DataService, private ts: TaskService) { }
 
   // Activada cuando el input de currentTask cambie
-  ngOnChanges() {
+  ngOnChanges() {    
     this.editForm.patchValue({
       id: this.currentTask?.id,
       title: this.currentTask?.title,
-      asignment: this.currentTask?.name,
+      asignment: this.currentTask?.user,
       notes: this.currentTask?.notes,
       start: this.currentTask?.start,
       end: this.currentTask?.end,
@@ -43,11 +44,7 @@ export class EditComponent implements OnInit, OnChanges {
   }
 
   update() {
-    this.ds.post('task', 'update', this.editForm.value).subscribe((dato: any) => {
-      if (dato['status']) {
-        // Aquí va el swal
-      }
-    })
+    this.ts.updateTask(this.editForm.value);
   }
   
   delete() {

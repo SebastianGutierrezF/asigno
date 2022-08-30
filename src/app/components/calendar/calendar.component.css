@@ -1,4 +1,3 @@
-.cal {
+.calendar {
     width: calc(100vw - 150px);
-    overflow-y: scroll;
 }
