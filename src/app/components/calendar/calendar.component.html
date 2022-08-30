@@ -58,7 +58,7 @@
     </div>
   </div>
   <br />
-  <div [ngSwitch]="view" *ngIf="ready">
+  <div [ngSwitch]="view" *ngIf="ready" class="views">
     <mwl-calendar-month-view
       *ngSwitchCase="CalendarView.Month"
       [viewDate]="viewDate"

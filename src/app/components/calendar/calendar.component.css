@@ -1,3 +1,8 @@
 .calendar {
-    width: calc(100vw - 150px);
+    width: calc(100vw - 125px);
+}
+
+.views {
+    overflow-y: scroll;
+    height: calc(100vh - 100px);
 }
