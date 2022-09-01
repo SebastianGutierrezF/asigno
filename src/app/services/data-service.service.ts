@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataService {
-  baseUrl = 'http://localhost/asignowebservice/controller/';
+  baseUrl = '/asignowebservice/controller/';
   public httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
@@ -21,7 +21,6 @@ export class DataService {
   }
 
   post(model: string, action: string, datos: any) {
-    console.log(`${this.baseUrl}${model}.php?option=${action}`);
     return this.http.post(`${this.baseUrl}${model}.php?option=${action}`, datos);
   }
 }
