@@ -31,24 +31,23 @@ export class TaskService {
       }
     })
   }
-
+  
   insertTask(object: TaskItem | any) {
     this.ds.post('task', 'insert', object).subscribe((dato: any) => {
       if (dato['status']) {
         // Aquí va el swal
+        console.log(dato);
       }   
     })
   }
 
-  // getByDate() {
-  //   if (localStorage['admin'] == 1) {
-  //     this.ds.get('task', 'getAllByDate').subscribe((dato: any) => {
-  //       this.tasks = dato as TaskItem[];
-  //     })
-  //   } else {
-  //     this.ds.post('task', 'getAllowed', {id: localStorage['id']}).subscribe((dato: any) => {
-  //       this.tasks = dato as TaskItem[];
-  //     })
-  //   }
-  // }
+  deleteTask(id: string) {
+    this.ds.post('task', 'delete', { id: id }).subscribe((dato: any) => {
+      if (dato['status']) {
+        // Aquí va el swal
+        console.log(dato);
+      }
+    })
+  }
+  
 }

@@ -72,11 +72,7 @@ export class EditComponent implements OnInit, OnChanges {
   }
   
   delete() {
-    this.ds.post('task', 'delete', { id: this.editForm.controls['id'].value }).subscribe((dato: any) => {
-      if (dato['status']) {
-        // Aquí va el swal
-      }
-    })
+    this.ts.deleteTask(this.editForm.controls['id'].value);
   }
 
   isAdmin() {
