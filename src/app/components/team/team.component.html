@@ -21,11 +21,12 @@
                 </div>
             </div>
             <div class="col">
-                <button class="btn btn-success" [disabled]="!teamForm.valid" (click)="addUser()"><i class="fas fa-user-plus"></i></button>
+                <button class="btn btn-success" [disabled]="!teamForm.valid" (click)="addUser()"><i
+                        class="fas fa-user-plus"></i></button>
             </div>
             <div *ngIf="notValid()" class="row mt-3 text-danger">Debes llenar todos los campos</div>
         </div>
-        
+
         <hr>
         <h3 class="mx-3">Equipo</h3>
 
@@ -40,10 +41,12 @@
                             <input class="form-control" formControlName="color" type="color" placeholder="Color">
                         </div>
                         <div class="form-check col-2">
-                            <input class="form-check-input" type="checkbox" [checked]="isAdmin(i)"  (change)="editCheckboxChange(i, $event)">
+                            <input class="form-check-input" type="checkbox" [checked]="isAdmin(i)"
+                                (change)="editCheckboxChange(i, $event)">
                             <label class="form-check-label">ADMIN</label>
                         </div>
-                        <button class="btn btn-outline-success col-1" [disabled]="!teamArray.valid" (click)="editUser(i)">
+                        <button class="btn btn-outline-success col-1" [disabled]="!teamArray.valid"
+                            (click)="editUser(i)">
                             <i class="fas fa-check"></i>
                         </button>
                         <button class="btn btn-outline-danger col-1" (click)="deleteUser(i)">
@@ -54,4 +57,14 @@
             </div>
         </div>
     </form>
+    <div class="metricas">
+        <div class="toDo" routerLink="/list">
+            {{toDo}}
+            <i class="fas fa-list-ul"></i>
+        </div>
+        <div class="complete" (click)="celebrate()">
+            {{complete}}
+            <i class="fas fa-check-circle"></i>
+        </div>
+    </div>
 </div>

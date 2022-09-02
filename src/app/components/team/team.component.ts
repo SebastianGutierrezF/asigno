@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { User } from 'src/app/interfaces/user';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TaskService } from 'src/app/services/task.service';
 import { UsersService } from 'src/app/services/users.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
@@ -18,9 +19,20 @@ export class TeamComponent {
     color: [, Validators.required],
     admin: [0,]
   })
+  complete: number = 0;
+  toDo: number = 0;
 
-  constructor(private fb: FormBuilder, private us: UsersService) {
+  constructor(private fb: FormBuilder, private us: UsersService, private ts: TaskService, private router: Router) {
     this.update();
+    this.ts.getTasks();
+    setTimeout(() => {
+      this.ts.tasks.forEach((task) => {
+        if (task.status == "Completada") {
+          this.complete++;
+        }
+        this.toDo++;
+      })
+    }, 1000);
   }
   
   update() {
@@ -79,6 +91,17 @@ export class TeamComponent {
 
   notValid() {
     return this.teamForm.invalid && this.teamForm.touched;
+  }
+
+  celebrate() {
+    Swal.fire({
+      title: `!Felicidades, su equipo ha completado ${this.complete} tareas!`,
+      width: 600,
+      padding: '3em',
+      color: '#716add',
+      background: '#fff',
+      backdrop: `url("/assets/confeti.webp")`
+    })
   }
 
 }

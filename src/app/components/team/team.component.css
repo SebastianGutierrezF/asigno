@@ -1,6 +1,48 @@
 .team {
     width: calc(100vw - 150px);
-    height: calc(100vh - 100px);
+    height: calc(100vh);
     overflow-y: scroll;
-    overflow-x: hidden;
+}
+
+.metricas {
+    max-width: 250px;
+    width: 50%;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 15px;
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 50px auto;
+}
+
+.toDo {
+    width: 50%;
+    height: 100%;
+    background: rgb(202, 87, 87);
+    font-weight: bold;
+    text-align: center;
+    padding-top: 20px;
+    font-size: xx-large;
+    color: white;
+    cursor: pointer;
+}
+
+.toDo:hover {
+    filter: brightness(1.1);
+}
+
+.complete {
+    width: 50%;
+    height: 100%;
+    background: rgb(87, 173, 87);
+    font-weight: bold;
+    text-align: center;
+    padding-top: 20px;
+    font-size: xx-large;
+    color: white;
+    cursor: pointer;
+}
+
+.complete:hover {
+    filter: brightness(1.1);
 }
