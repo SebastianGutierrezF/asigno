@@ -22,3 +22,17 @@
 .notes {
     border: none;
 }
+
+.col {
+    border-right: solid 2px greenyellow;
+}
+
+.colSinBorde {
+    border-right: none;
+}
+
+.form-check-input {
+    width: 40px;
+    height: 40px;
+    margin-left: 10%;
+}
