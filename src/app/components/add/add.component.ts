@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user';
 import { TaskService } from 'src/app/services/task.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add',
@@ -28,6 +29,7 @@ export class AddComponent implements OnInit {
   }
 
   add() {
+    
     // Adjunta el tiempo inicial a la fecha inicial
     const startDate = this.addForm.controls['start'].value;
     const startTime = this.addForm.controls['startTime'].value;
@@ -36,29 +38,28 @@ export class AddComponent implements OnInit {
     // Adjunta el tiempo final a la fecha final
     const endDate = this.addForm.controls['end'].value;
     const endTime = this.addForm.controls['endTime'].value;
-    this.addForm.controls['end'].patchValue(endDate + ' ' + endTime);    
-    
+    this.addForm.controls['end'].patchValue(endDate + ' ' + endTime);
+
     // Envia los datos con el servicio
     this.ts.insertTask(this.addForm.value);
-    this.addForm.reset();
   }
 
-  setFrom(date: string) {    
+  setFrom(date: string) {
     this.addForm.controls['start'].patchValue(date);
   }
-  
+
   setTo(date: string) {
-    this.addForm.controls['end'].patchValue(date);    
+    this.addForm.controls['end'].patchValue(date);
   }
 
   setStartTime(time: string) {
     this.addForm.controls['startTime'].patchValue(time);
   }
-  
+
   setEndTime(time: string) {
     this.addForm.controls['endTime'].patchValue(time);
   }
-  
+
   notValid(control: string) {
     return this.addForm.controls[control].touched && this.addForm.controls[control].errors;
   }

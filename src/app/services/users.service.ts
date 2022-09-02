@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import Swal from 'sweetalert2';
 import { User } from '../interfaces/user';
 import { DataService } from './data-service.service';
 
@@ -7,6 +8,7 @@ import { DataService } from './data-service.service';
 })
 export class UsersService {
   users: User[] = [];
+  swal = Swal.mixin({});
 
   constructor(private ds: DataService) { }
 
@@ -26,8 +28,17 @@ export class UsersService {
   addUser(data: User) {
     this.ds.post('task', 'insertUser', data).subscribe((dato: any) => {
       if (dato['status']) {
-        console.log(dato);
-        // Aqui va el swall
+        this.swal.fire({
+          title: "Éxito",
+          text: `El usuario ${data.name} ha sido agregado`,
+          icon: 'success'
+        }).then(() => location.reload())
+      } else {
+        this.swal.fire({
+          title: "Error",
+          text: "Ha ocurrido un error al agregar al usuario",
+          icon: 'error'
+        }).then(() => location.reload())
       }
     })
   }
@@ -35,18 +46,55 @@ export class UsersService {
   editUser(data: User) {
     this.ds.post('task', 'editUser', data).subscribe((dato: any) => {
       if (dato['status']) {
-        // Aqui va el swal
-        console.log(dato);
-        
+        this.swal.fire({
+          title: "Éxito",
+          text: `El usuario ${data.name} ha sido actualizado`,
+          icon: 'success'
+        }).then(() => location.reload())
+      } else {
+        this.swal.fire({
+          title: "Error",
+          text: "Ha ocurrido un error al actualizar al usuario",
+          icon: 'error'
+        }).then(() => location.reload())
       }
     })
   }
 
   deleteUser(id: number) {
-    this.ds.post('task', 'deleteUser', {id: id}).subscribe((dato: any) => {
-      if (dato['status']) {
-        console.log(dato);
-        // Aquí va el swal
+    this.swal.fire({
+      title: '¿Estás seguro?',
+      text: "¡Esta acción no se puede revertir!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, borrar',
+      cancelButtonText: 'No, cancelar',
+      reverseButtons: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ds.post('task', 'deleteUser', {id: id}).subscribe((dato: any) => {
+          if (dato['status']) {
+            this.swal.fire({
+              title: "Éxito",
+              text: `El usuario ha sido eliminado`,
+              icon: 'success'
+            }).then(() => location.reload())
+          } else {
+            this.swal.fire({
+              title: "Error",
+              text: "Ha ocurrido un error al eliminar al usuario",
+              icon: 'error'
+            }).then(() => location.reload())
+          }
+        })
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        this.swal.fire(
+          'Cancelado',
+          'No se ha eliminado el usuario',
+          'error'
+        ).then(() => location.reload())
       }
     })
   }

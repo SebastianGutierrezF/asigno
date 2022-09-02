@@ -5,6 +5,7 @@ import { TaskItem } from 'src/app/interfaces/task-item';
 import { User } from 'src/app/interfaces/user';
 import { TaskService } from 'src/app/services/task.service';
 import { UsersService } from 'src/app/services/users.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',

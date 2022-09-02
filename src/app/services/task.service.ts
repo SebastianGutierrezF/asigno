@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { NgbDate, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { TaskItem } from '../interfaces/task-item';
 import { DataService } from './data-service.service';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
   tasks: TaskItem[] = [];
-
+  swalAdd = Swal.mixin({});
   constructor(private ds: DataService) { }
 
   getTasks() {
@@ -26,8 +26,17 @@ export class TaskService {
   updateTask(object: TaskItem | any) {
     this.ds.post('task', 'update', object).subscribe((dato: any) => {
       if (dato['status']) {
-        // Aquí va el swal
-        console.log(dato);
+        this.swalAdd.fire({
+          title: "Éxito",
+          text: `La tarea ${object.title} ha sido actualizada`,
+          icon: 'success'
+        })
+      } else {
+        this.swalAdd.fire({
+          title: "Error",
+          text: "Ha ocurrido un error al actualizar la tarea",
+          icon: 'error'
+        })
       }
     })
   }
@@ -35,17 +44,35 @@ export class TaskService {
   insertTask(object: TaskItem | any) {
     this.ds.post('task', 'insert', object).subscribe((dato: any) => {
       if (dato['status']) {
-        // Aquí va el swal
-        console.log(dato);
-      }   
+        this.swalAdd.fire({
+          title: "Éxito",
+          text: `La tarea ${object.title} ha sido agregada`,
+          icon: 'success'
+        })
+      } else {
+        this.swalAdd.fire({
+          title: "Error",
+          text: "Ha ocurrido un error al agregar la tarea",
+          icon: 'error'
+        })
+      }
     })
   }
 
   deleteTask(id: string) {
     this.ds.post('task', 'delete', { id: id }).subscribe((dato: any) => {
       if (dato['status']) {
-        // Aquí va el swal
-        console.log(dato);
+        this.swalAdd.fire({
+          title: "Éxito",
+          text: `La tarea ha sido eliminada`,
+          icon: 'success'
+        })
+      } else {
+        this.swalAdd.fire({
+          title: "Error",
+          text: "Ha ocurrido un error al eliminar la tarea",
+          icon: 'error'
+        })
       }
     })
   }

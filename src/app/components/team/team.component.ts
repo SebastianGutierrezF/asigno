@@ -67,16 +67,13 @@ export class TeamComponent {
   
   addUser() {
     this.us.addUser(this.teamForm.value);
-    this.update();
   }
   
   editUser(i: number) {
     this.us.editUser(this.teamArray.controls[i].value);
   }
-
+  
   deleteUser(index: number) {
-    console.log(this.teamArray.controls[index].value.id);
-    
     this.us.deleteUser(this.teamArray.controls[index].value.id);
   }
 
