@@ -16,9 +16,8 @@
   <label for="date"><small>Fecha de inicio y fin de la actividad</small></label>
   <app-datepicker id="date" (start)="setFrom($event)" (end)="setTo($event)" [inStart]="currentTask?.start" [inEnd]="currentTask?.end"></app-datepicker>
   <div class="row gap-5 mt-3 justify-content-center">
-    <div class="col-12 col-md-4">
-      <label for="time"><small>Hora de inicio</small></label>
-      <app-time-picker id="time" (outStartTime)="setStartTime($event)" (outEndTime)="setEndTime($event)" [inStartTime]="currentTask?.start" [inEndTime]="currentTask?.end"></app-time-picker>
+    <div class="col">
+      <app-time-picker (outStartTime)="setStartTime($event)" (outEndTime)="setEndTime($event)" [inStartTime]="currentTask?.start" [inEndTime]="currentTask?.end"></app-time-picker>
     </div>
   </div>
   <hr>
