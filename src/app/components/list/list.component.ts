@@ -52,7 +52,9 @@ export class ListComponent {
   search() {
     this.reset();
     this.tasks = this.tasks.filter((task) => {
-      return task.title.includes(this.filterForm.controls['search'].value) || task.notes.includes(this.filterForm.controls['search'].value);
+      const notes = task.notes.toLowerCase();
+      const title = task.title.toLowerCase();
+      return title.includes(((this.filterForm.controls['search'].value) as string).toLowerCase()) || notes.includes((this.filterForm.controls['search'].value as string).toLowerCase());
     });
   }
 
