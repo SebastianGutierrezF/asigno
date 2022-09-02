@@ -42,6 +42,7 @@ export class AddComponent implements OnInit {
 
     // Envia los datos con el servicio
     this.ts.insertTask(this.addForm.value);
+    this.addForm.reset();
   }
 
   setFrom(date: string) {
