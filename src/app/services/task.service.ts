@@ -9,6 +9,9 @@ import Swal from 'sweetalert2';
 export class TaskService {
   tasks: TaskItem[] = [];
   swalAdd = Swal.mixin({});
+  complete: number = 0;
+  toDo: number = 0;
+
   constructor(private ds: DataService) { }
 
   getTasks() {
@@ -21,6 +24,14 @@ export class TaskService {
         this.tasks = dato as TaskItem[];
       })
     }
+    setTimeout(() => {
+      this.complete = 0;
+      this.toDo = 0;
+      this.tasks.forEach((task) => {
+        if (task.status == "Completada") this.complete++;
+        this.toDo++;
+      })
+    }, 1000);
   }
 
   updateTask(object: TaskItem | any) {
@@ -30,7 +41,7 @@ export class TaskService {
           title: "Éxito",
           text: `La tarea ${object.title} ha sido actualizada`,
           icon: 'success'
-        })
+        }).then(() => this.getTasks())
       } else {
         this.swalAdd.fire({
           title: "Error",
@@ -48,7 +59,7 @@ export class TaskService {
           title: "Éxito",
           text: `La tarea ${object.title} ha sido agregada`,
           icon: 'success'
-        })
+        }).then(() => this.getTasks())
       } else {
         this.swalAdd.fire({
           title: "Error",
@@ -66,7 +77,7 @@ export class TaskService {
           title: "Éxito",
           text: `La tarea ha sido eliminada`,
           icon: 'success'
-        })
+        }).then(() => this.getTasks())
       } else {
         this.swalAdd.fire({
           title: "Error",

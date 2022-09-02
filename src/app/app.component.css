@@ -5,3 +5,48 @@
     max-height: 100vh;
 }
 
+.metricas {
+    position: fixed;
+    width: 200px;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 15px;
+    display: flex;
+    flex-flow: row nowrap;
+    right: 40px;
+    bottom: 20px;
+    z-index: 2;
+}
+
+.toDo {
+    width: 50%;
+    height: 100%;
+    background: rgb(202,87,87);
+    background: linear-gradient(180deg, rgba(202,87,87,1) 0%, rgba(255,155,155,1) 100%);
+    text-align: center;
+    padding-top: 15px;
+    font-size: xx-large;
+    color: white;
+    cursor: pointer;
+}
+
+.toDo:hover {
+    filter: brightness(1.1);
+}
+
+.complete {
+    width: 50%;
+    height: 100%;
+    background: rgb(87,137,87);
+    background: linear-gradient(180deg, rgba(87,137,87,1) 0%, rgba(148,255,148,1) 100%);
+    text-align: center;
+    padding-top: 15px;
+    font-size: xx-large;
+    color: white;
+    cursor: pointer;
+}
+
+.complete:hover {
+    filter: brightness(1.1);
+}
+

@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/services/auth-service.service';
 export class LoginComponent implements OnInit {
   formulario: FormGroup = this.fb.group({
     email: [, [Validators.required, Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)]],
-    pass: [, [Validators.required]],
+    pass: [, [Validators.required, Validators.minLength(8)]],
   });
 
   ngOnInit(): void {}

@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user';
 import { TaskService } from 'src/app/services/task.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add',
@@ -29,7 +28,6 @@ export class AddComponent implements OnInit {
   }
 
   add() {
-    
     // Adjunta el tiempo inicial a la fecha inicial
     const startDate = this.addForm.controls['start'].value;
     const startTime = this.addForm.controls['startTime'].value;

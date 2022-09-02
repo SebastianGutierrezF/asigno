@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth-service.service';
 })
 export class SideNavComponent implements OnInit {
 
-  constructor(private as: AuthService, private router: Router) { }
+  constructor(private as: AuthService) { }
 
   ngOnInit(): void {
   }

@@ -27,7 +27,7 @@ export class EditComponent implements OnInit, OnChanges {
   @Input() users: User[] = [];
   @Input() currentTask?: TaskItem;
 
-  constructor(private fb: FormBuilder, private ds: DataService, private ts: TaskService) { }
+  constructor(private fb: FormBuilder, private ts: TaskService) { }
 
   // Activada cuando el input de currentTask cambie
   ngOnChanges() {    
