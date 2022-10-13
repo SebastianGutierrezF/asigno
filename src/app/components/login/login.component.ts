@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     this.as.login(this.formulario.value);
     setTimeout(() => {
       this.router.navigate(['/list']);
-    }, 1000);
+    }, 5000);
   }
 
   // ingresarSinLogin() {
