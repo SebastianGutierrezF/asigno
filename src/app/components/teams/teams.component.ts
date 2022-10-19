@@ -14,6 +14,8 @@ export class TeamsComponent implements OnInit {
   teamForm: FormGroup = this.fb.group({
     name: [, Validators.required]
   })
+  draggedMember: number = 0;
+  selectedTeam: string = '0';
 
   constructor(private ds: DataService, private fb: FormBuilder) {
     this.update();
@@ -48,6 +50,25 @@ export class TeamsComponent implements OnInit {
         alert("Ocurrio un error al intentar agregar el equipo.");
       }
     })
+  }
+
+  onDrop(event: Event) {    
+    event.preventDefault();
+    this.ds.post('task', 'addToTeam', {'idTeam': this.selectedTeam, 'idUser': this.draggedMember}).subscribe((data: any) => {
+      if (data) {
+        this.update();
+      } else {
+        alert("Ocurrio un error al intentar cambiar de equipo")
+      }
+    })
+  }
+
+  dragEnter(team: string) {    
+    this.selectedTeam = team;
+  }
+
+  dragStart(user: any) {
+    this.draggedMember = user.id;
   }
 
 }
