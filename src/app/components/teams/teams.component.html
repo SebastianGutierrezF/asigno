@@ -1,0 +1,34 @@
+<section class="teamsContainer">
+    <article class="teamForm">
+        <form [formGroup]="teamForm">
+            <div class="row"><h5>Agregar equipo</h5></div>
+            <div class="row">
+                <input type="text" formControlName="name">
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-success" [disabled]="this.teamForm.invalid" (click)="agregarEquipo()" (keyup.enter)="agregarEquipo()">Agregar</button>
+            </div>
+        </form>
+    </article>
+    <article class="teams">
+        <div class="card" style="width: 18rem; height: 250px;" *ngFor="let team of teams">
+            <div class="card-body">
+              <h5 class="card-title">{{team.tName}}</h5>
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let user of team.users">{{user.name}}</li>
+              </ul>
+            </div>
+          </div>
+    </article>
+    <article class="unasigned">
+        <div class="card" style="width: 18rem; height: 250px;" *ngFor="let team of unasigned">
+            <div class="card-body">
+              <h5 class="card-title">Usuarios sin equipo</h5>
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let user of team.users">{{user.name}}</li>
+              </ul>
+            </div>
+          </div>
+    </article>
+
+</section>

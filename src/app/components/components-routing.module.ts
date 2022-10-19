@@ -5,12 +5,14 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { ListComponent } from './list/list.component';
 import { LoginComponent } from './login/login.component';
 import { TeamComponent } from './team/team.component';
+import { TeamsComponent } from './teams/teams.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'list', component: ListComponent, canActivate: [AuthGuard]},
   {path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard]},
   {path: 'team', component: TeamComponent, canActivate: [AuthGuard]},
+  {path: 'teams', component: TeamsComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: 'list'}
 ];
 

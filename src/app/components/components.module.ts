@@ -15,6 +15,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { TeamComponent } from './team/team.component';
 import { TimePickerComponent } from './time-picker/time-picker.component';
+import { TeamsComponent } from './teams/teams.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TimePickerComponent } from './time-picker/time-picker.component';
     DatePickerComponent,
     LoginComponent,
     TeamComponent,
-    TimePickerComponent
+    TimePickerComponent,
+    TeamsComponent
   ],
   imports: [
     CommonModule,

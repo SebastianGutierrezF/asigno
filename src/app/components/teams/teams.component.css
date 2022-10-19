@@ -1,0 +1,54 @@
+.teamsContainer {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.teamForm {
+    display: flex;
+    flex-flow: row nowrap;
+    margin: 10px;
+    min-width: 200px;
+}
+
+.teamForm form .row {
+    margin: 10px;
+}
+
+.teams {
+    margin: 10px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-flow: row wrap;
+    height: 100vh;
+    overflow-y: scroll;
+    /*Quita la barra de scroll*/
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/*Quita la barra de scroll*/
+.teams::-webkit-scrollbar {
+    display: none;
+}
+
+.teams .card-body .list-group {
+    height: 200px;
+    overflow-y: scroll;
+    /*Quita la barra de scroll*/
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+
+/*Quita la barra de scroll*/
+.teams .card-body .list-group::-webkit-scrollbar {
+    display: none;
+}
+
+.unasigned {
+    display: flex;
+    justify-content: start;
+    margin: 10px;
+}
