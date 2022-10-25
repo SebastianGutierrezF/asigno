@@ -11,7 +11,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'list', component: ListComponent, canActivate: [AuthGuard]},
   {path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard]},
-  {path: 'team', component: TeamComponent, canActivate: [AuthGuard]},
+  {path: 'users', component: TeamComponent, canActivate: [AuthGuard]},
   {path: 'teams', component: TeamsComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: 'list'}
 ];

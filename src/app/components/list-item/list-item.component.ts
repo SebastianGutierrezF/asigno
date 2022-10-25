@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { TaskItem } from 'src/app/interfaces/task-item';
 import { TaskService } from 'src/app/services/task.service';
 

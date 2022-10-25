@@ -38,11 +38,16 @@
 }
 
 .teams .card-body .list-group {
-    height: 200px;
+    height: 150px;
     overflow-y: scroll;
     /*Quita la barra de scroll*/
     scrollbar-width: none;
     -ms-overflow-style: none;
+}
+
+.teams .card-body button {
+    float: right;
+    border: none;
 }
 
 
@@ -55,4 +60,16 @@
     display: flex;
     justify-content: start;
     margin: 10px;
+}
+
+.unasigned .card-body .list-group {
+    height: 150px;
+    overflow-y: scroll;
+    /*Quita la barra de scroll*/
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.unasigned .card-body .list-group::-webkit-scrollbar {
+    display: none;
 }

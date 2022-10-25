@@ -33,7 +33,7 @@ export class TeamComponent {
           id: [team.id],
           name: [team.name, Validators.required],
           email: [team.email, Validators.required],
-          // pass: [team.pass, Validators.required],
+          pass: [team.pass, Validators.required],
           color: [team.color, Validators.required],
           admin: [team.admin, Validators.required],
         })
@@ -81,5 +81,4 @@ export class TeamComponent {
   notValid() {
     return this.teamForm.invalid && this.teamForm.touched;
   }
-
 }

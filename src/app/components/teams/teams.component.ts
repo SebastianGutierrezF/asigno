@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Team } from 'src/app/interfaces/team';
 import { DataService } from 'src/app/services/data-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-teams',
@@ -16,6 +17,7 @@ export class TeamsComponent implements OnInit {
   })
   draggedMember: number = 0;
   selectedTeam: string = '0';
+  swal = Swal.mixin({});
 
   constructor(private ds: DataService, private fb: FormBuilder) {
     this.update();
@@ -45,9 +47,48 @@ export class TeamsComponent implements OnInit {
     this.ds.post('task', 'addTeam', this.teamForm.value).subscribe((data: any) => {
       if (data) {
         alert("Equipo agregado exitosamente.");
+        this.teamForm.reset();
         this.update();
       } else {
         alert("Ocurrio un error al intentar agregar el equipo.");
+      }
+    })
+  }
+
+  deleteTeam(id: string) {
+    this.swal.fire({
+      title: '¿Estás seguro?',
+      text: "¡Esta acción no se puede revertir!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, borrar',
+      cancelButtonText: 'No, cancelar',
+      reverseButtons: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.ds.post('task', 'deleteTeam', {'team': id}).subscribe((data: any) => {
+          if (data) {
+            this.swal.fire({
+              title: "Éxito",
+              text: `El equipo ha sido eliminado`,
+              icon: 'success'
+            }).then(() => this.update())
+          } else {
+            this.swal.fire({
+              title: "Error",
+              text: "Ha ocurrido un error al eliminar al equipo",
+              icon: 'error'
+            }).then(() => this.update())
+          }
+        })
+      } else if (
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        this.swal.fire(
+          'Cancelado',
+          'No se ha eliminado el equipo',
+          'error'
+        ).then(() => this.update())
       }
     })
   }
@@ -63,7 +104,7 @@ export class TeamsComponent implements OnInit {
     })
   }
 
-  dragEnter(team: string) {    
+  dragEnter(team: string) {       
     this.selectedTeam = team;
   }
 
