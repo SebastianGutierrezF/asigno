@@ -73,6 +73,7 @@ export class EditComponent implements OnInit, OnChanges {
   
   delete() {
     this.ts.deleteTask(this.editForm.controls['id'].value);
+    this.editForm.reset();
   }
 
   isAdmin() {
