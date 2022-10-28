@@ -39,7 +39,7 @@ export class TaskService {
 
   updateTask(object: TaskItem | any) {
     this.ds.post('task', 'updateTask', object).subscribe((dato: any) => {
-      if (dato['status']) {
+      if (dato) {
         this.swalAdd.fire({
           title: "Éxito",
           text: `La tarea ${object.title} ha sido actualizada`,
@@ -57,7 +57,7 @@ export class TaskService {
   
   insertTask(object: TaskItem | any) {
     this.ds.post('task', 'insertTask', object).subscribe((dato: any) => {
-      if (dato['status']) {
+      if (dato) {
         this.swalAdd.fire({
           title: "Éxito",
           text: `La tarea ${object.title} ha sido agregada`,
@@ -75,7 +75,7 @@ export class TaskService {
 
   deleteTask(id: string) {
     this.ds.post('task', 'deleteTask', { id: id }).subscribe((dato: any) => {
-      if (dato['status']) {
+      if (dato) {
         this.swalAdd.fire({
           title: "Éxito",
           text: `La tarea ha sido eliminada`,
