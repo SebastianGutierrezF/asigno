@@ -18,7 +18,7 @@ export class UsersService {
         this.users = dato as User[];
       })
     } else {
-      this.ds.post('task', 'getUsers', { id: localStorage.getItem('id') }).subscribe((dato: any) => {
+      this.ds.post('task', 'getUsers', { team: localStorage.getItem('team') }).subscribe((dato: any) => {
         this.users = dato as User[];
       })
     }

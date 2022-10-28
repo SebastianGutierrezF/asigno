@@ -21,7 +21,7 @@ export class TaskService {
         this.countDone();
       })
     } else {
-      this.ds.post('task', 'getAllowed', {id: localStorage['id']}).subscribe((dato: any) => {
+      this.ds.post('task', 'getAllowed', {team: localStorage['team']}).subscribe((dato: any) => {
         this.tasks = dato as TaskItem[];
         this.countDone();
       })

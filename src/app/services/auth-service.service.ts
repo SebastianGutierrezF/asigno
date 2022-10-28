@@ -19,6 +19,7 @@ export class AuthService {
         // Divide el nombre completo por espacio y regresa sólo el nombre
         localStorage.setItem('name', ((dato.name as string).split(' '))[0]);
         localStorage.setItem('admin', dato.admin);
+        localStorage.setItem('team', dato.team);
         this.router.navigate(['/list']);
       } else {
         Swal.fire({
