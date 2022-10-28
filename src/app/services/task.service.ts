@@ -18,24 +18,27 @@ export class TaskService {
     if (localStorage['admin'] == 1) {
       this.ds.get('task', 'getAll').subscribe((dato: any) => {
         this.tasks = dato as TaskItem[];
+        this.countDone();
       })
     } else {
       this.ds.post('task', 'getAllowed', {id: localStorage['id']}).subscribe((dato: any) => {
         this.tasks = dato as TaskItem[];
+        this.countDone();
       })
     }
-    setTimeout(() => {
-      this.complete = 0;
-      this.toDo = 0;
-      this.tasks.forEach((task) => {
-        if (task.status == "Completada") this.complete++;
-        this.toDo++;
-      })
-    }, 1000);
+  }
+
+  countDone() {
+    this.complete = 0;
+    this.toDo = 0;
+    this.tasks.forEach((task) => {
+      if (task.status == "Completada") this.complete++;
+      this.toDo++;
+    })
   }
 
   updateTask(object: TaskItem | any) {
-    this.ds.post('task', 'update', object).subscribe((dato: any) => {
+    this.ds.post('task', 'updateTask', object).subscribe((dato: any) => {
       if (dato['status']) {
         this.swalAdd.fire({
           title: "Éxito",
@@ -53,7 +56,7 @@ export class TaskService {
   }
   
   insertTask(object: TaskItem | any) {
-    this.ds.post('task', 'insert', object).subscribe((dato: any) => {
+    this.ds.post('task', 'insertTask', object).subscribe((dato: any) => {
       if (dato['status']) {
         this.swalAdd.fire({
           title: "Éxito",
@@ -71,7 +74,7 @@ export class TaskService {
   }
 
   deleteTask(id: string) {
-    this.ds.post('task', 'delete', { id: id }).subscribe((dato: any) => {
+    this.ds.post('task', 'deleteTask', { id: id }).subscribe((dato: any) => {
       if (dato['status']) {
         this.swalAdd.fire({
           title: "Éxito",
