@@ -23,19 +23,9 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.as.login(this.formulario.value);
-    setTimeout(() => {
-      this.router.navigate(['/list']);
-    }, 5000);
   }
 
-  // ingresarSinLogin() {
-  //   this.auth.logout();
-  //   this.router.navigate(['./pokemon']);
-  // }
-
   notValid(campo: string) {
-    return (
-      this.formulario.controls[campo].errors && this.formulario.controls[campo].touched
-    );
+    return this.formulario.controls[campo].errors && this.formulario.controls[campo].touched
   }
 }
