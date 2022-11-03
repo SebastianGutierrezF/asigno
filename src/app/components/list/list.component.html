@@ -22,6 +22,7 @@
               <li><a class="dropdown-item" style="cursor: pointer;" (click)="filterByStatus('Completada')">Completada</a></li>
             </ul>
           </li>
+          <button type="button" class="btn btn-outline-warning" (click)="reset()" style="margin-left: 5px;"><i class="fas fa-redo"></i></button>
         </ul>
         <app-datepicker (start)="setDateFrom($event)" (end)="setDateTo($event)"></app-datepicker>
         <form class="d-flex">
