@@ -24,10 +24,8 @@
           </li>
         </ul>
         <app-datepicker (start)="setDateFrom($event)" (end)="setDateTo($event)"></app-datepicker>
-        <form class="d-flex" [formGroup]="filterForm">
-          <input class="form-control me-2" type="search" aria-label="Search" formControlName="search">
-          <button type="button" class="btn btn-outline-success" (click)="search()">Buscar</button>
-          <button type="button" class="btn btn-outline-warning" (click)="update()" style="margin-left: 5px;"><i class="fas fa-redo"></i></button>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" (keyup)="search($event)" (search)="search($event)" aria-label="Search" placeholder="Buscar">
         </form>
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add">Agregar</button>
       </div>

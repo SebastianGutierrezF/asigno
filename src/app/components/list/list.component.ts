@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { TaskItem } from 'src/app/interfaces/task-item';
 import { User } from 'src/app/interfaces/user';
 import { TaskService } from 'src/app/services/task.service';
@@ -15,13 +15,11 @@ export class ListComponent {
   filteredTasks: TaskItem[] = [];
   users: User[] = [];
   currentTask?: TaskItem;
-  filterForm: FormGroup = this.fb.group({
-    search: [],
-  });
   start?: Date;
   end?: Date;
   completed: TaskItem[] = [];
   loading = true;
+  searchVal: string = '';
 
   constructor(private us: UsersService, private ts: TaskService, private fb: FormBuilder) {
     this.update();
@@ -47,12 +45,16 @@ export class ListComponent {
     this.update();
   }
 
-  search() {
+  search(ev: any) {
     this.reset();
     this.tasks = this.tasks.filter((task) => {
-      const notes = task.notes.toLowerCase();
-      const title = task.title.toLowerCase();
-      return title.includes(((this.filterForm.controls['search'].value) as string).toLowerCase()) || notes.includes((this.filterForm.controls['search'].value as string).toLowerCase());
+      if (task.notes && task.title) {
+        const notes = task.notes.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        const title = task.title.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        this.searchVal = ev.target.value.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        return title.includes(this.searchVal.toLowerCase()) || notes.includes(this.searchVal.toLowerCase());
+      }
+      return false;
     });
   }
 
