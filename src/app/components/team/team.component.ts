@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { TaskService } from 'src/app/services/task.service';
 import { UsersService } from 'src/app/services/users.service';
 @Component({
   selector: 'app-team',
@@ -9,19 +7,20 @@ import { UsersService } from 'src/app/services/users.service';
   styleUrls: ['./team.component.css']
 })
 export class TeamComponent {
+  @ViewChild("photo", {static: false}) logoInput: ElementRef | undefined;
   teamForm: FormGroup = this.fb.group({
     team: new FormArray([]),
     id: [,],
     name: [, Validators.required],
-    email: [, [Validators.required, Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)]],
+    email: [, [Validators.required, Validators.email]],
     pass: [, [Validators.required, Validators.minLength(8)]],
     color: [, Validators.required],
-    admin: [0,]
+    admin: [0,],
+    photo: [, [Validators.required]]
   })
 
-  constructor(private fb: FormBuilder, private us: UsersService, private ts: TaskService, private router: Router) {
+  constructor(private fb: FormBuilder, private us: UsersService) {
     this.update();
-    
   }
   
   update() {
@@ -29,13 +28,14 @@ export class TeamComponent {
     setTimeout(() => {
       this.teamArray.clear();
       this.us.users.forEach((team) => {
-        const user = this.fb.group({
+        const user = this.fb.group({  
           id: [team.id],
           name: [team.name, Validators.required],
           email: [team.email, Validators.required],
           pass: [team.pass, Validators.required],
           color: [team.color, Validators.required],
           admin: [team.admin, Validators.required],
+          photo: [team.photo]
         })
         this.teamArray.push(user);
       });
@@ -80,5 +80,19 @@ export class TeamComponent {
 
   notValid() {
     return this.teamForm.invalid && this.teamForm.touched;
+  }
+
+  leerArchivo(event: any) {
+    let reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {        
+        console.log(reader.result);
+        this.teamForm.patchValue({
+          photo: reader.result
+        });
+      }
+    }
   }
 }

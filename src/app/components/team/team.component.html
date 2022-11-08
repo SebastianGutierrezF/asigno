@@ -14,15 +14,21 @@
             <div class="col-1">
                 <input class="form-control" placeholder="Color" type="color" formControlName="color">
             </div>
-            <div class="col-1">
+            <div class="col">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" (change)="submitCheckboxChange($event)">
                     <label class="form-check-label" for="autoSizingCheck">ADMIN</label>
                 </div>
             </div>
-            <div class="col">
-                <button class="btn btn-success" [disabled]="!teamForm.valid" (click)="addUser()"><i
-                        class="fas fa-user-plus"></i></button>
+            <div class="row" style="margin: 20px 0px;">
+                <label for="photo">Foto</label>
+                <input id="photo" type="file" #photo (change)="leerArchivo($event)">
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-success" [disabled]="!teamForm.valid" (click)="addUser()"><i
+                            class="fas fa-user-plus"></i></button>
+                </div>
             </div>
             <div *ngIf="notValid()" class="row mt-3 text-danger">Debes llenar todos los campos</div>
         </div>
@@ -45,6 +51,9 @@
                                 (change)="editCheckboxChange(i, $event)">
                             <label class="form-check-label">ADMIN</label>
                         </div>
+                        <!-- <div class="col">
+                            <input id="photo" type="file" #logo (change)="leerArchivo($event)">
+                        </div> -->
                         <button class="btn btn-outline-success col-1" [disabled]="!teamArray.valid"
                             (click)="editUser(i)">
                             <i class="fas fa-check"></i>

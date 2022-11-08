@@ -4,5 +4,6 @@ export interface User {
     email: string,
     pass: string,
     color: string,
-    admin: string
+    admin: string,
+    photo: string
 }
