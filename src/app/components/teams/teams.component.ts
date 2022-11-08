@@ -27,20 +27,39 @@ export class TeamsComponent implements OnInit {
   }
 
   update() {
-    this.ds.get('task', 'getTeams').subscribe((data: any) => {
-      if (data) {
-        this.teams = data as Team[];
-      } else {
-        alert('Ocurrió un error al intentar obtener los equipos');
-      }
-    })
-    this.ds.get('task', 'getUnasigned').subscribe((data: any) => {
-      if (data) {
-        this.unasigned = data;
-      } else {
-        alert('Ocurrió un error al intentar obtener usuarios sin equipo');
-      }
-    })
+    if (localStorage.getItem('admin') == '1') {
+      this.ds.get('task', 'getTeams').subscribe((data: any) => {
+        console.log(data);
+        
+        if (data) {
+          this.teams = data as Team[];
+        } else {
+          alert('Ocurrió un error al intentar obtener los equipos');
+        }
+      })
+      this.ds.get('task', 'getUnasigned').subscribe((data: any) => {
+        console.log(data);
+        if (data) {
+          this.unasigned = data;
+        } else {
+          alert('Ocurrió un error al intentar obtener usuarios sin equipo');
+        }
+      })
+    } else {
+      this.ds.post('task', 'getTeam', {'team':localStorage.getItem('team')}).subscribe((data: any) => {
+        console.log(data);
+        if (data) {
+          this.teams = data as Team[];
+        } else {
+          alert('Ocurrió un error al intentar obtener los equipos');
+        }
+      })
+    }
+    
+  }
+
+  isAdmin() {
+    return localStorage.getItem('admin') == '1';
   }
 
   agregarEquipo() {

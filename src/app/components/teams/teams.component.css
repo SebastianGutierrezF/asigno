@@ -73,3 +73,45 @@
 .unasigned .card-body .list-group::-webkit-scrollbar {
     display: none;
 }
+
+.team {
+    margin: 10px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-flow: row wrap;
+    height: 100vh;
+    overflow-y: scroll;
+    /*Quita la barra de scroll*/
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+
+
+/*Quita la barra de scroll*/
+.team::-webkit-scrollbar {
+    display: none;
+}
+
+.team .card-body .list-group {
+    height: 150px;
+    overflow-y: scroll;
+    /*Quita la barra de scroll*/
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+
+/*Quita la barra de scroll*/
+.team .card-body .list-group::-webkit-scrollbar {
+    display: none;
+}
+
+.userImg {
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    overflow: hidden;
+}
