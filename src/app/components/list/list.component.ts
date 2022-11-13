@@ -72,10 +72,10 @@ export class ListComponent {
     // Executes search only if both from and to dates are set
     this.reset();
     if (this.start && this.end) {
+      this.end.setDate(this.end.getDate() + 2);
       this.tasks = this.tasks.filter((task) => {
         const taskStart = new Date(task.start);
         const taskEnd = new Date(task.end);
-        this.end?.setDate(this.end?.getDate() + 1);
         return taskStart >= this.start! && taskEnd <= this.end!;
       });
       this.start = this.end = undefined;
