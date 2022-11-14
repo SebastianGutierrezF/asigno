@@ -28,9 +28,7 @@ export class TeamsComponent implements OnInit {
 
   update() {
     if (localStorage.getItem('admin') == '1') {
-      this.ds.get('task', 'getTeams').subscribe((data: any) => {
-        console.log(data);
-        
+      this.ds.get('task', 'getTeams').subscribe((data: any) => {        
         if (data) {
           this.teams = data as Team[];
         } else {
@@ -38,7 +36,6 @@ export class TeamsComponent implements OnInit {
         }
       })
       this.ds.get('task', 'getUnasigned').subscribe((data: any) => {
-        console.log(data);
         if (data) {
           this.unasigned = data;
         } else {
@@ -47,7 +44,6 @@ export class TeamsComponent implements OnInit {
       })
     } else {
       this.ds.post('task', 'getTeam', {'team':localStorage.getItem('team')}).subscribe((data: any) => {
-        console.log(data);
         if (data) {
           this.teams = data as Team[];
         } else {

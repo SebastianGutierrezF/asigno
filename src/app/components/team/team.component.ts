@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/services/users.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
@@ -18,8 +19,9 @@ export class TeamComponent {
     admin: [0,],
     photo: [, [Validators.required]]
   })
+  img: string = "";
 
-  constructor(private fb: FormBuilder, private us: UsersService) {
+  constructor(private fb: FormBuilder, private us: UsersService, private http: HttpClient) {
     this.update();
   }
   
@@ -67,10 +69,14 @@ export class TeamComponent {
   }
   
   addUser() {
+    this.teamForm.controls['photo'].setValue(this.img);
     this.us.addUser(this.teamForm.value);
   }
   
   editUser(i: number) {
+    this.teamArray.controls[i].patchValue({
+      photo: this.img
+    })
     this.us.editUser(this.teamArray.controls[i].value);
   }
   
@@ -82,17 +88,19 @@ export class TeamComponent {
     return this.teamForm.invalid && this.teamForm.touched;
   }
 
-  leerArchivo(event: any) {
-    let reader = new FileReader();
-    if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
-      reader.onload = () => {        
-        console.log(reader.result);
-        this.teamForm.patchValue({
-          photo: reader.result
-        });
-      }
+  subirArchivo(event: any) {
+    let data = new FormData();
+    data.append('file', event.target.files[0]);
+    data.append('upload_preset', 'asigno');
+    data.append('cloud_name', 'duz7dfwse')
+    if (event.target.files && event.target.files.length) { 
+      this.http.post('https://api.cloudinary.com/v1_1/duz7dfwse/image/upload', data).subscribe((response: any) => {
+        if (response.url) {          
+          this.img = response.url;
+        } else {
+          alert("Ocurrio un error al subir la imagen.");
+        }
+      });
     }
   }
 }
