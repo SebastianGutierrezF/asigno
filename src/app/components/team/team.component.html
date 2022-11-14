@@ -22,7 +22,7 @@
             </div>
             <div class="row" style="margin: 20px 0px;">
                 <label for="photo">Foto</label>
-                <input id="photo" type="file" #photo (change)="leerArchivo($event)">
+                <input id="photo" type="file" #photo (change)="subirArchivo($event)">
             </div>
             <div class="row">
                 <div class="col">
@@ -51,9 +51,9 @@
                                 (change)="editCheckboxChange(i, $event)">
                             <label class="form-check-label">ADMIN</label>
                         </div>
-                        <!-- <div class="col">
-                            <input id="photo" type="file" #logo (change)="leerArchivo($event)">
-                        </div> -->
+                        <div class="col">
+                            <input id="photo" type="file" #logo (change)="subirArchivo($event)">
+                        </div>
                         <button class="btn btn-outline-success col-1" [disabled]="!teamArray.valid"
                             (click)="editUser(i)">
                             <i class="fas fa-check"></i>
