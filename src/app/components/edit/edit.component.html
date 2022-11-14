@@ -30,7 +30,7 @@
       </select>
       <label for="statusSelect" class="mx-2">Estatus</label>
     </div>
-    <button [disabled]="!editForm.valid" class="btn btn-success col-2 m-3" (keyup.enter)="update()" (click)="update()"><i class="fas fa-check"></i></button>
+    <button [disabled]="!editForm.valid" class="btn btn-primary col-2 m-3" (keyup.enter)="update()" (click)="update()"><i class="fas fa-check"></i></button>
     <button *ngIf="isAdmin()" class="btn btn-danger col-1 m-3" (click)="delete()"><i class="fa-solid fa-trash"></i></button>
   </div>
 </form>

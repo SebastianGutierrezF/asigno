@@ -24,6 +24,6 @@
       <app-time-picker (outStartTime)="setStartTime($event)" (outEndTime)="setEndTime($event)"></app-time-picker>
     </div>
   </div>
-  <button class="btn btn-success mt-3" (click)="add()" (keyup.enter)="add()" [disabled]="!addForm.valid">Agregar actividad</button>
+  <button class="btn btn-primary mt-3" (click)="add()" (keyup.enter)="add()" [disabled]="!addForm.valid">Agregar actividad</button>
 </form>
 

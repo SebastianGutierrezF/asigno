@@ -29,17 +29,17 @@
         <form class="d-flex">
           <input class="form-control me-2" type="search" (keyup)="search($event)" (search)="search($event)" aria-label="Search" placeholder="Buscar">
         </form>
-        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#add">Agregar</button>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">Agregar</button>
       </div>
 </nav>
 
 <!-- Task list -->
 <div class="container-fluid list">
   <ul class="list-group">
-      <div *ngIf="loading" class="spinner-border text-success mx-auto my-5" role="status">
+      <div *ngIf="loading" class="spinner-border text-primary mx-auto my-5" role="status">
         <span class="sr-only">Loading tasks...</span>
       </div>
-      <div class="alert alert-success" role="alert" *ngIf="tasks.length == 0 && !loading"><strong>No se encontraron actividades pendientes, ¡sigue así!</strong></div>
+      <div class="alert alert-primary" role="alert" *ngIf="tasks.length == 0 && !loading"><strong>No se encontraron actividades pendientes, ¡sigue así!</strong></div>
       <app-list-item *ngFor="let task of tasks" [task]="task" (outTask)="setCurrentTask($event)"></app-list-item>
   </ul>
 </div>

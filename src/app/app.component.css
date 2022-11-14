@@ -21,8 +21,9 @@
 .toDo {
     width: 50%;
     height: 100%;
-    background: rgb(202,87,87);
-    background: linear-gradient(180deg, rgba(202,87,87,1) 0%, rgba(255,155,155,1) 100%);
+    /* background: rgb(202,87,87);
+    background: linear-gradient(180deg, rgba(202,87,87,1) 0%, rgba(255,155,155,1) 100%); */
+    background: rgba(139, 139, 137, 1);
     text-align: center;
     padding-top: 15px;
     font-size: xx-large;
@@ -37,8 +38,9 @@
 .complete {
     width: 50%;
     height: 100%;
-    background: rgb(87,137,87);
-    background: linear-gradient(180deg, rgba(87,137,87,1) 0%, rgba(148,255,148,1) 100%);
+    /* background: rgb(87, 137, 87);
+    background: linear-gradient(180deg, rgba(87, 137, 87, 1) 0%, rgba(148, 255, 148, 1) 100%); */
+    background:rgba(39, 76, 120, 1);
     text-align: center;
     padding-top: 15px;
     font-size: xx-large;
@@ -49,4 +51,3 @@
 .complete:hover {
     filter: brightness(1.1);
 }
-
