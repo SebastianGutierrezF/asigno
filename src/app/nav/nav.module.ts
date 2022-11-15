@@ -3,16 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { NavRoutingModule } from './nav-routing.module';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { RouterModule } from '@angular/router';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 
 @NgModule({
   declarations: [
-    SideNavComponent
+    SideNavComponent,
+    SidenavComponent
   ],
   imports: [
     CommonModule,
-    NavRoutingModule
+    NavRoutingModule,
+    RouterModule
   ],
-  exports: [SideNavComponent]
+  exports: [SideNavComponent, SidenavComponent]
 })
 export class NavModule { }

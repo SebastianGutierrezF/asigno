@@ -1,5 +1,5 @@
 .calendar {
-    width: calc(100vw - 125px);
+    width: calc(100vw - 5rem);
 }
 
 .views {
