@@ -1,5 +1,6 @@
 import { animate, keyframes, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
+import { AuthService } from 'src/app/services/auth-service.service';
 import { navbarData } from './nav-data';
 
 interface SideNavToggle {
@@ -57,7 +58,7 @@ export class SidenavComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor(private as: AuthService) { }
 
 
   toggleCollapse(): void {
@@ -72,6 +73,24 @@ export class SidenavComponent implements OnInit {
 
   getName() {
     return localStorage['name'];
+  }
+
+  logout() {
+    this.as.logout();
+  }
+
+  isLogged() {
+    return localStorage['id'];
+  }
+
+  isAllowed(label: string) {
+    if (localStorage['admin'] === '1') {
+      return true;
+    } else if (label === 'Usuarios') {
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }

@@ -24,4 +24,8 @@ export class AppComponent {
       backdrop: `url("/assets/confeti.webp")`
     })
   }
+
+  isLogged() {
+    return localStorage['id'];
+  }
 }
