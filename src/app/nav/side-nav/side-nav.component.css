@@ -5,9 +5,9 @@
     background: linear-gradient(180deg, rgba(56,56,56,1) 38%, rgba(64,121,95,1) 74%, rgba(0,255,139,1) 100%); */
     background: rgb(231, 236, 239);
     background: linear-gradient(247deg, rgba(231, 236, 239, 1) 0%, rgba(96, 150, 186, 1) 50%, rgba(39, 76, 120, 1) 100%);
-}
+  }
 
-.sideNav .container-fluid {
+  .sideNav .container-fluid {
     align-content: flex-start;
     height: 100%;
 }
