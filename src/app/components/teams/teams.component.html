@@ -47,10 +47,10 @@
             </div>
           </div>
       </article>
-    <article class="unasigned">
+    <article class="unasigned" (dragenter)="dragEnter('')">
         <div class="card" style="width: 18rem; height: 250px;">
           <h5 class="card-title m-2">Usuarios sin equipo</h5>
-            <div class="card-body" *ngFor="let team of unasigned" (dragend)="onDrop($event)" (dragenter)="dragEnter(team.team)">
+            <div class="card-body" *ngFor="let team of unasigned" (dragend)="onDrop($event)">
               <ul class="list-group">
                 <li class="list-group-item" *ngFor="let user of team.users" (dragstart)="dragStart(user)" [draggable]="true">
                   {{user.name}}

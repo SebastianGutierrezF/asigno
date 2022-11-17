@@ -118,8 +118,8 @@ export class TeamsComponent implements OnInit {
       }
     })
   }
-
-  dragEnter(team: string) {       
+  
+  dragEnter(team: string) {    
     this.selectedTeam = team;
   }
 
