@@ -37,9 +37,16 @@ export class AddComponent implements OnInit {
     const endDate = this.addForm.controls['end'].value;
     const endTime = this.addForm.controls['endTime'].value;
     this.addForm.controls['end'].patchValue(endDate + ' ' + endTime);
-
+    
     // Envia los datos con el servicio
-    this.ts.insertTask(this.addForm.value);
+    const obj = {
+      title: this.addForm.controls['title'].value,
+      start: this.addForm.controls['start'].value,
+      end: this.addForm.controls['end'].value,
+      asignment: this.addForm.controls['asignment'].value,
+      notes: this.addForm.controls['notes'].value
+    }
+    this.ts.insertTask(obj);
     this.addForm.reset();
   }
 

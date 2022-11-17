@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class DataService {
   // Cambiar a remoto asignowebservice.herokuapp.com
   baseUrl = 'http://asignowebservice.herokuapp.com/controller/';
+  // baseUrl = 'http://localhost/asignowebservice/controller/';
   public httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
