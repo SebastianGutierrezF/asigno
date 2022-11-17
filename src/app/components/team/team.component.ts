@@ -97,6 +97,7 @@ export class TeamComponent {
       this.http.post('https://api.cloudinary.com/v1_1/duz7dfwse/image/upload', data).subscribe((response: any) => {
         if (response.url) {          
           this.img = response.url;
+          this.teamForm.controls['photo'].setValue(this.img);
         } else {
           alert("Ocurrio un error al subir la imagen.");
         }
