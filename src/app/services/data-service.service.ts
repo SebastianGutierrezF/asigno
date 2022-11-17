@@ -12,7 +12,9 @@ export class DataService {
   public httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json; charset=utf-8',
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
     })
   };
 
@@ -23,6 +25,6 @@ export class DataService {
   }
 
   post(model: string, action: string, datos: any) {
-    return this.http.post(`${this.baseUrl}${model}.php?option=${action}`, datos);
+    return this.http.post(`${this.baseUrl}${model}.php?option=${action}`, datos, this.httpOptions);
   }
 }

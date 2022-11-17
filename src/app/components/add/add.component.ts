@@ -47,7 +47,7 @@ export class AddComponent implements OnInit {
       notes: this.addForm.controls['notes'].value
     }
     this.ts.insertTask(obj);
-    this.addForm.reset();
+    // this.addForm.reset();
   }
 
   setFrom(date: string) {
