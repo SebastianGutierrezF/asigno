@@ -11,12 +11,16 @@ import { AuthService } from 'src/app/services/auth-service.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  container: any
+
   formulario: FormGroup = this.fb.group({
     email: [, [Validators.required, Validators.pattern(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)]],
     pass: [, [Validators.required, Validators.minLength(8)]],
   });
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.container = document.querySelector(".container1");
+  }
 
   constructor(private router: Router, private fb: FormBuilder, private as: AuthService) {
   }
@@ -27,5 +31,13 @@ export class LoginComponent implements OnInit {
 
   notValid(campo: string) {
     return this.formulario.controls[campo].errors && this.formulario.controls[campo].touched
+  }
+
+  signupO() {
+    this.container.classList.add("sign-up-mode");
+  }
+
+  signupC() {
+    this.container.classList.remove("sign-up-mode");
   }
 }

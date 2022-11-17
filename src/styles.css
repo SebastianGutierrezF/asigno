@@ -4,4 +4,5 @@
 .contenido {
   left: 5rem;
   position: absolute;
+  /* width: 100vw; */
 }
