@@ -69,14 +69,13 @@ export class TeamComponent {
   }
   
   addUser() {
-    this.teamForm.controls['photo'].setValue(this.img);
+    if (this.img != null) {
+      this.teamForm.controls['photo'].setValue(this.img);
+    }
     this.us.addUser(this.teamForm.value);
   }
   
   editUser(i: number) {
-    this.teamArray.controls[i].patchValue({
-      photo: this.img
-    })
     this.us.editUser(this.teamArray.controls[i].value);
   }
   
