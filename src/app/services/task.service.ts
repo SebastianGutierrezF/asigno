@@ -55,8 +55,8 @@ export class TaskService {
     })
   }
   
-  insertTask(object: TaskItem | any) {    
-    this.ds.post('task', 'addTask', object).subscribe((dato: any) => {
+  insertTask(object: TaskItem | any) {
+    this.ds.post('task', 'addTask1', object).subscribe((dato: any) => {
       if (dato) {
         this.swalAdd.fire({
           title: "Éxito",
@@ -70,6 +70,7 @@ export class TaskService {
           icon: 'error'
         })
       }
+    }, error=>{console.log(error);
     })
   }
 
