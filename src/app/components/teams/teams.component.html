@@ -6,7 +6,7 @@
           <h5 class="card-title">{{team.tName}}</h5>
           <ul class="list-group">
             <li class="list-group-item" *ngFor="let user of team.users">
-              <img [src]="user.photo" alt="">
+              <img [src]="user.photo" alt="" class="userImg">
               {{user.name}}
             </li>
           </ul>
@@ -32,7 +32,7 @@
               <h5 class="card-title">{{team.tName}}</h5>
               <ul class="list-group">
                 <li class="list-group-item" *ngFor="let user of team.users" dropzone="move" (dragstart)="dragStart(user)" [draggable]="true">
-                  <img [src]="user.photo" alt="" class="userImg" >
+                  <img [src]="user.photo" alt="" class="userImg">
                   {{user.name}}
                   <span class="material-symbols-outlined">
                     drag_indicator

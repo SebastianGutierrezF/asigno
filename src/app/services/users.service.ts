@@ -45,7 +45,7 @@ export class UsersService {
 
   editUser(data: User) {
     this.ds.post('task', 'editUser', data).subscribe((dato: any) => {
-      if (dato['status']) {
+      if (dato) {
         this.swal.fire({
           title: "Éxito",
           text: `El usuario ${data.name} ha sido actualizado`,
