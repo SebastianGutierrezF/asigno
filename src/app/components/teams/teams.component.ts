@@ -61,11 +61,19 @@ export class TeamsComponent implements OnInit {
   agregarEquipo() {
     this.ds.post('task', 'addTeam', this.teamForm.value).subscribe((data: any) => {
       if (data) {
-        alert("Equipo agregado exitosamente.");
+        this.swal.fire({
+          title: "Éxito",
+          text: `El equipo ha sido agregado`,
+          icon: 'success'
+        })
         this.teamForm.reset();
         this.update();
       } else {
-        alert("Ocurrio un error al intentar agregar el equipo.");
+        this.swal.fire({
+          title: "Error",
+          text: "Ha ocurrido un error al crear al equipo",
+          icon: 'error'
+        })
       }
     })
   }

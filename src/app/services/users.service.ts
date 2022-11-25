@@ -27,7 +27,7 @@ export class UsersService {
 
   addUser(data: User) {
     this.ds.post('task', 'addUser1', data).subscribe((dato: any) => {
-      if (dato['status']) {
+      if (dato) {
         this.swal.fire({
           title: "Éxito",
           text: `El usuario ${data.name} ha sido agregado`,
