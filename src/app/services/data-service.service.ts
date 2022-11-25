@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class DataService {
   // Cambiar a remoto asignowebservice.herokuapp.com
-  baseUrl = 'https://asigno.herokuapp.com/controller/';
+  baseUrl = 'https://asigno-dist-nyvi7.ondigitalocean.app/controller/';
   // baseUrl = 'http://localhost/asignowebservice/controller/';
   // public options = {
   //   headers: new HttpHeaders({
