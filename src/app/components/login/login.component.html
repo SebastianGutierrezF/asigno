@@ -24,16 +24,16 @@
     <div class="signin-signup">
       <form action="#" class="sign-in-form" [formGroup]="formulario">
         <h2 class="title">Iniciar Sesión</h2>
-        <div *ngIf="notValid('email')"><small class="text-danger">Ingresa tu usuario</small></div>
         <div class="input-field">
           <i class="fas fa-user"></i>
           <input type="text" class="form-control" name="email" formControlName="email" placeholder="Correo" />
         </div>
-        <div *ngIf="notValid('pass')"><small class="text-danger">Ingresa tu contraseña</small></div>
+        <div *ngIf="notValid('email')"><small class="text-danger">Ingresa tu usuario</small></div>
         <div class="input-field">
           <i class="fas fa-lock"></i>
           <input type="password" name="pass" formControlName="pass" placeholder="Password" />
         </div>
+        <div *ngIf="notValid('pass')"><small class="text-danger">Ingresa tu contraseña</small></div>
         <input type="submit" value="Login" (click)="login()" class="btn solid" />
         <p class="social-text">Siguenos en nuestras Redes Sociales</p>
         <div class="social-media">
@@ -91,7 +91,7 @@
         <!-- <h3>ASIGNO</h3> -->
         <img src="../../../assets/banner.png" alt="">
         <p>
-          Asigna tareas, gestiona a tu personal, elavora equipos y muchas cosas mas en Asigno.com
+          Asigna tareas, gestiona a tu personal, crea equipos y muchas cosas mas!
         </p>
         <button (click)="signupO()" class="btn transparent" id="sign-up-btn">
           Saber más...
@@ -103,8 +103,8 @@
       <div class="content">
         <h3>Sobre Nosotros</h3>
         <p>
-          Somos un gestor de actividades para tu empresa, ofrecemos planes de pago mensuales y dinamicos para que
-          empieces hoy mismo a gestionar tus tareas.
+          Asigno es un <strong>gestor de actividades</strong> para tu empresa.<br> Ofrecemos diversos planes para que
+          empieces hoy mismo<br> a mejorar la <strong>eficiencia de tu empresa</strong>.
         </p>
         <button (click)="signupC()" class="btn transparent" id="sign-in-btn">
           <!-- Volver al Login -->

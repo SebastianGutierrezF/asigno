@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TaskItem } from '../interfaces/task-item';
 import { DataService } from './data-service.service';
 import Swal from 'sweetalert2';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -55,7 +56,7 @@ export class TaskService {
     })
   }
   
-  insertTask(object: TaskItem | any) {
+  async insertTask(object: TaskItem | any): Promise<any> {
     this.ds.post('task', 'addTask1', object).subscribe((dato: any) => {
       if (dato) {
         this.swalAdd.fire({
@@ -70,7 +71,7 @@ export class TaskService {
           icon: 'error'
         })
       }
-    }, error=>{console.log(error);
+      return true;
     })
   }
 

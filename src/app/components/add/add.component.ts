@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/interfaces/user';
 import { TaskService } from 'src/app/services/task.service';
 
@@ -46,8 +47,9 @@ export class AddComponent implements OnInit {
       asignment: this.addForm.controls['asignment'].value,
       notes: this.addForm.controls['notes'].value
     }
-    this.ts.insertTask(obj);
-    // this.addForm.reset();
+    this.ts.insertTask(obj).then(() => {
+      this.addForm.reset();
+    });
   }
 
   setFrom(date: string) {
