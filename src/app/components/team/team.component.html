@@ -30,7 +30,7 @@
                             class="fas fa-user-plus"></i></button>
                 </div>
             </div>
-            <div *ngIf="notValid()" class="row mt-3 text-danger">Debes llenar todos los campos</div>
+            <div *ngIf="notValid()" class="row mt-3 text-danger">Verifica que el llenado de tus campos sea correcto</div>
         </div>
 
         <hr>
@@ -57,7 +57,7 @@
                             <i class="fas fa-check"></i>
                         </button>
                         <button class="btn btn-outline-danger col-1" (click)="deleteUser(i)">
-                            <i class="fas fa-times"></i>
+                            <i class="fa-solid fa-trash"></i>
                         </button>
                     </form>
                 </div>

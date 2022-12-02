@@ -60,7 +60,7 @@ export class EditComponent implements OnInit, OnChanges {
     
     // Envia los datos con el servicio
     this.ts.updateTask(this.editForm.value);
-    this.editForm.reset();
+    // this.editForm.reset();
   }
 
   setStartTime(time: string) {
